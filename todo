@@ -1,3 +1,4 @@
 - resolve systemd-journald not starting with storage=none
 - update new rpi config.txt in i2select package
 - update webradios (radioparadise aac 320)
+- support hfs usb disks

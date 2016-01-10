@@ -3,3 +3,5 @@
 - update webradios (radioparadise aac 320)
 - support hfs usb disks
 - support iqaudio amp
+- revise rpi config file
+- add default odroid boot.ini file

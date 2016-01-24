@@ -217,10 +217,10 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 #echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
 #echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
-# IRQ affinity options
-echo -e "${red}Adding optional IRQ affinity options...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi -O /usr/bin/irq-archphile
-chmod +x /usr/bin/irq-archphile
+# IRQ affinity options - CURRENTLY IMPOSSIBLE TO CHANGE AFFINITY FOR RPI2
+#echo -e "${red}Adding optional IRQ affinity options...${NC}" 
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi -O /usr/bin/irq-archphile
+#chmod +x /usr/bin/irq-archphile
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

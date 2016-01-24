@@ -213,7 +213,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 #echo -e "${red}Setting a password change for next login...${NC}" 
 #chage -d 0 root
 
-#fixing root permissions for sshd
+#fixing root permissions for sshd - CURRENTLY APPLYING THIS FIX BEFORE THE FIRST BOOT
 #echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
 #echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 

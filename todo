@@ -5,3 +5,4 @@
 - support iqaudio amp
 - revise rpi config file
 - add default odroid boot.ini file
+- add documentation based on archwiki for nfs clients

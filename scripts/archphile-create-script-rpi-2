@@ -222,6 +222,11 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 #wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi -O /usr/bin/irq-archphile
 #chmod +x /usr/bin/irq-archphile
 
+# Installing custom linux kernel that solves issues with 24 Bit reproduction using I2S
+#echo -e "${red}Installing custom Archphile kernel...${NC}" 
+pacman -S linux-raspberrypi-archphile --noconfirm
+pacman -Scc
+
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
 rm /etc/ssh/ssh_host_*

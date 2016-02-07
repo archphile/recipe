@@ -1,12 +1,2 @@
-# USB bus
-echo "8" > /proc/irq/277/smp_affinity
 
-# ethernet->CPU2
-echo "4" > /proc/irq/278/smp_affinity
-echo "4" > /proc/irq/279/smp_affinity
 
-# microSD card->CPU1
-echo "2" > /proc/irq/280/smp_affinity
-
-# set the affinity of MPD in one core - choose values from 0-3
-taskset -c -p 2 $(pidof mpd)

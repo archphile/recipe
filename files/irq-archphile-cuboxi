@@ -1,1 +1,10 @@
+#!/bin/bash
+# Cores 1 2 3 4 have to be put as 1 2 4 8
 
+# USB bus
+echo "8" > /proc/irq/72/smp_affinity
+echo "8" > /proc/irq/75/smp_affinity
+
+# Ethernet
+echo "2" > /proc/irq/150/smp_affinity
+echo "2" > /proc/irq/151/smp_affinity

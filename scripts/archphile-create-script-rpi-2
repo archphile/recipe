@@ -227,6 +227,10 @@ echo -e "${red}Installing custom Archphile kernel...${NC}"
 pacman -S linux-raspberrypi-archphile --noconfirm
 pacman -Scc
 
+# Changing cmdline options
+echo -e "${red}Updating cmdline.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
+
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
 rm /etc/ssh/ssh_host_*

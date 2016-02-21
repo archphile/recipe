@@ -224,7 +224,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 
 # Installing custom linux kernel that solves issues with 24 Bit reproduction using I2S
 echo -e "${red}Installing custom Archphile kernel...${NC}" 
-pacman -S linux-raspberrypi-archphile --noconfirm
+pacman -S linux-raspberrypi-archphile 
 pacman -Scc
 
 # Changing cmdline options

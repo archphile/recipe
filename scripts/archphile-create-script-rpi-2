@@ -231,6 +231,10 @@ pacman -Scc
 echo -e "${red}Updating cmdline.txt...${NC}" 
 wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
 
+# Changing config.txt options
+echo -e "${red}Updating config.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/packages/master/i2select/config.txt.orig - O /boot/config.txt
+
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
 rm /etc/ssh/ssh_host_*

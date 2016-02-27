@@ -1,4 +1,4 @@
- Uncomment some or all of these to enable the optional hardware interfaces
+# Uncomment some or all of these to enable the optional hardware interfaces
 # Params:
 #         i2c_arm                  Set to "on" to enable the ARM's i2c interface
 #                                  (default "off")
@@ -51,7 +51,6 @@
 #device_tree_overlay=hifiberry-amp
 #device_tree_overlay=iqaudio-dac
 #device_tree_overlay=iqaudio-dacplus
-
 
 #
 # See /boot/overlays/README for a detailed list and description of additional
@@ -136,5 +135,3 @@
 #over_voltage=6
 
 gpu_mem=64
-
-

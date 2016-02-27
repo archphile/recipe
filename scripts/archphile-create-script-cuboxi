@@ -5,7 +5,7 @@ red='\e[0;31m'
 NC='\e[0m'
 
 # Deleting alarm user and changing Root password
-echo -e "${red}Deleting alarm user...${NC}" 
+echo -e "${red}Deleting alarm user...${NC}" wl
 #su
 #cd /root
 userdel -r alarm
@@ -201,8 +201,8 @@ rm -R /var/log
 #systemctl mask systemd-logind
 
 # turning off wifi power management
-echo -e "${red}Turning off wifi power management...${NC}" 
-sed -i 's/^#iwconfig wlan0 power off.*/iwconfig wlan0 power off/' /usr/bin/archphile-optimize
+#echo -e "${red}Turning off wifi power management...${NC}" 
+#sed -i 's/^#iwconfig wlan0 power off.*/iwconfig wlan0 power off/' /usr/bin/archphile-optimize
 
 # temporary fix for ControlGroup and ControlGroupAttribute mpd.service options
 #echo -e "${red}Applying temporart fix for mpd.service ...${NC}" 

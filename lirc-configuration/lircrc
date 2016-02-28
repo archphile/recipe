@@ -1,0 +1,54 @@
+begin
+prog = irexec
+remote = apple
+repeat = 0
+button = KEY_PLAY
+config = mpc toggle
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_RIGHT
+repeat = 0
+config = mpc next
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_LEFT
+repeat = 0
+config = mpc prev
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_UP
+delay = 2
+repeat = 10
+config = amixer sset 'Analogue 1' 1%+ 
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_DOWN
+delay = 2
+repeat = 10
+config = amixer sset 'Analogue 1' 1%- 
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_MENU
+button = KEY_UP
+repeat = 0
+config = amixer sset 'Analogue 1' 100%
+end
+begin
+prog = irexec
+remote = apple
+button = KEY_MENU
+button = KEY_OK
+repeat = 0
+config = systemctl poweroff
+end
+

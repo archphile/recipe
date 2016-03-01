@@ -91,7 +91,7 @@ Server = http://archphile.org/repo/playground/playground-arm7
 EOF
 echo -e "${red}Updating system and installing needed packages...${NC}" 
 pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize i2select upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap hfsprogs dosfstools samba lirc --noconfirm
+pacman -S mpd-archphile mpc ympd-archphile archphile-optimize i2select upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap hfsprogs dosfstools samba lirc crda  --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -224,12 +224,12 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 
 # Installing custom linux kernel that solves issues with 24 Bit reproduction using I2S
 echo -e "${red}Installing custom Archphile kernel...${NC}" 
-pacman -S linux-raspberrypi-archphile crda 
-pacman -Scc
+#pacman -S linux-raspberrypi-archphile crda 
+#pacman -Scc
 
 # Changing cmdline options
-echo -e "${red}Updating cmdline.txt...${NC}" 
-wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
+#echo -e "${red}Updating cmdline.txt...${NC}" 
+#wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
 
 # Changing config.txt options
 #echo -e "${red}Updating config.txt...${NC}" 

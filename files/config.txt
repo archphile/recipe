@@ -51,7 +51,7 @@
 #device_tree_overlay=hifiberry-amp
 #device_tree_overlay=iqaudio-dac
 #device_tree_overlay=iqaudio-dacplus
-
+#device_tree_overlay=rpi-dac
 #
 # See /boot/overlays/README for a detailed list and description of additional
 #   overlays and their configuration options.

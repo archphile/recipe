@@ -220,7 +220,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 
 # IRQ affinity options
 echo -e "${red}Adding optional IRQ affinity options...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroid -O /usr/bin/irq-archphile
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroidc1 -O /usr/bin/irq-archphile
 chmod +x /usr/bin/irq-archphile
 
 # kernel downgrade to solve USB issues

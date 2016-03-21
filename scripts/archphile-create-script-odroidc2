@@ -146,12 +146,12 @@ echo -e "${red}Setting the USB DAC as the default sound card...${NC}"
 cat > /etc/asound.conf <<"EOF"
 pcm.!default {
         type hw
-        card 1
+        card 0
 }
 
 ctl.!default {
         type hw
-        card 1
+        card 0
 }
 EOF
 
@@ -230,13 +230,13 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphi
 chmod +x /usr/bin/irq-archphile
 
 # Set USB DAC as default MPD soundcard
-echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
-sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
+#echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
+#sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Install custom kernel
-#echo -e "${red}Installing custom kernel...${NC}"
-#pacman -Sy linux-odroid-c2-archphile
-#pacman -Scc
+echo -e "${red}Installing custom kernel...${NC}"
+pacman -Sy linux-odroid-c2-archphile
+pacman -Scc
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

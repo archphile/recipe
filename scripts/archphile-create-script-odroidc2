@@ -146,12 +146,12 @@ echo -e "${red}Setting the USB DAC as the default sound card...${NC}"
 cat > /etc/asound.conf <<"EOF"
 pcm.!default {
         type hw
-        card 0
+        card 1
 }
 
 ctl.!default {
         type hw
-        card 0
+        card 1
 }
 EOF
 

@@ -9,7 +9,7 @@ tmpfs /var/log tmpfs nodev,nosuid,noatime,mode=1777,size=20m 0 0
 #//xxx.xxx.xxx.xxx/nameofshare /mnt/nas-samba cifs guest,ro,iocharset=utf8,nolock,noauto,x-systemd.automount,x-systemd.device-timeout=10,sec=ntlm,rsize=8048,wsize=8096
 
 #SAMBA Share - Share using username/password
-#//xxx.xxx.xxx.xxx/nameofshare /mnt/nas-samba cifs username=myusername,password=mypassword,ro,iocharset=utf8,nolock,noauto,x-systemd.automount,x-systemd.device-timeout=10,sec=ntlm,rsize=8048,wsize=8096
+#//xxx.xxx.xxx.xxx/nameofshare /mnt/nas-samba cifs username=myusername,password=mypassword,ro,iocharset=utf8,nolock,noauto,x-systemd.automount,x-systemd.device-timeout=10,sec=ntlm,rsize=8192,wsize=8192
 
 #NFS Share
-#xxx.xxx.xxx.xxx:/nameofshare   /mnt/nas-nfs  nfs4    ro,noauto,x-systemd.automount,x-systemd.device-timeout=10,rsize=8048,wsize=8096
+#xxx.xxx.xxx.xxx:/nameofshare   /mnt/nas-nfs  nfs4    ro,noauto,x-systemd.automount,x-systemd.device-timeout=10,rsize=8192,wsize=8192

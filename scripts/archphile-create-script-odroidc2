@@ -234,9 +234,13 @@ chmod +x /usr/bin/irq-archphile
 #sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Install custom kernel
-echo -e "${red}Installing custom kernel...${NC}"
-pacman -Sy linux-odroid-c2-archphile
-pacman -Scc
+#echo -e "${red}Installing custom kernel...${NC}"
+#pacman -Sy linux-odroid-c2-archphile
+#pacman -Scc
+
+# Set custom boot.ini configuration
+echo -e "${red}Setting custom boot.ini...${NC}"
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2 -O /boot/boot.ini
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

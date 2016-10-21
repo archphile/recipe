@@ -80,8 +80,8 @@ setenv m_bpp "32"
 # Allows you to force HDMI thinking that the cable is connected.
 # true = HDMI will believe that cable is always connected
 # false = will let board/monitor negotiate the connection status
-setenv hpd "true"
-# setenv hpd "false"
+#setenv hpd "true"
+setenv hpd "false"
 
 # Default Console Device Setting
 setenv condev "console=ttyS0,115200n8 console=tty0"   # on both

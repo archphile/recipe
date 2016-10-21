@@ -91,7 +91,7 @@ EOF
 
 echo -e "${red}Updating system and installing needed packages...${NC}" 
 pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap samba hfsprogs brutefir lirc exfat-utils mpdscribble --noconfirm
+pacman -S mpd-archphile mpc ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap samba hfsprogs brutefir lirc exfat-utils mpdscribble rng-tools --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -235,6 +235,12 @@ sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Disable hearbeat led on Odroid C1+
 #sed -i 's/^#echo default-on.*/echo default-on > /sys/class/leds/blue\:heartbeat/trigger/' /usr/bin/archphile-optimize
+
+# Disable haveged and enable rngd
+echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
+systemctl disable haveged
+echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
+systemctl enable rngd
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

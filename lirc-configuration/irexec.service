@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStartPre=/usr/bin/sh -c "sleep 3"
-ExecStart=/usr/bin/irexec /etc/conf.d/lircrc
+ExecStart=/usr/bin/taskset -c 0 /usr/bin/irexec /etc/conf.d/lircrc
 
 [Install]
 WantedBy=multi-user.target

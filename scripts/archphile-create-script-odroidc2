@@ -91,9 +91,12 @@ SigLevel = Never
 Server = http://archphile.org/repo/playground/playground-aarch64
 EOF
 
-echo -e "${red}Updating system and installing needed packages...${NC}" 
+echo -e "${red}Updating system...${NC}" 
 pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap samba hfsprogs brutefir lirc exfat-utils mpdscribble rngd-tools--noconfirm
+echo -e "${red}Installing audio related packages...${NC}" 
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose --noconfirm
+echo -e "${red}Installing system related packages...${NC}" 
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd hd-idle lirc rngd-tools --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -122,19 +125,17 @@ systemctl enable avahi-daemon
 echo -e "${red}Creating directories needed by MPD and downloading webradios...${NC}" 
 mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
-wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
-tar xvfz webradio.tar.gz
-mv webradio /mnt/
-chown -R mpd:root /mnt/webradio
-rm webradio.tar.gz
 mkdir /mnt/usb-disk
 mkdir /var/lib/mpd/music
 chown -R mpd /var/lib/mpd
 cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
-ln -s /mnt/webradio
 ln -s /mnt/usb-disk
+wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
+tar xvfz webradio.tar.gz
+chown -R root:root webradio
+rm webradio.tar.gz
 gpasswd -a mpd audio
 
 # Alsa configuration using nrpacks, a command recently reintroduced in odroid kernels
@@ -246,8 +247,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2
 
 # Disable haveged and enable rngd
 echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
-systemctl disable haveged --noconfirm
-pacman -Rcsn haveged
+systemctl disable haveged 
+pacman -Rcsn haveged --noconfirm
 echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
 systemctl enable rngd
 

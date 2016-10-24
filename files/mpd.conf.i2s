@@ -44,8 +44,10 @@ mixer_control   "Digital"
 mixer_device    "hw:0"
 mixer_index     "0"
 device          "hw:0,0"
-#use the line below when enabling sox resampler
+# use the line below when enabling sox resampler
+# the lines below are just some examples
 #format "192000:24:2"
+#format "*:24:*"
 auto_resample   "no"
 auto_channels   "no"
 }

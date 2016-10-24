@@ -27,12 +27,12 @@ systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf
 cat > /etc/resolv.conf <<"EOF"
-# Google DNS
-nameserver 8.8.8.8
-nameserver 8.8.4.4
 # Opendns
-#nameserver 208.67.222.222 
-#nameserver 208.67.220.220
+nameserver 208.67.222.222 
+nameserver 208.67.220.220
+# Google
+#nameserver 8.8.8.8
+#nameserver 8.8.4.4
 EOF
 echo -e "${red}Disallowing dhcpcd to change DNS servers...${NC}" 
 echo "nohook resolv.conf" >>/etc/dhcpcd.conf
@@ -41,6 +41,8 @@ echo "nohook resolv.conf" >>/etc/dhcpcd.conf
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
 blacklist w1_gpio
+blacklist spi_gpio
+blacklist gxbb_wdt
 EOF
 
 # Network Configuration
@@ -123,7 +125,7 @@ mkdir /mnt/nas-samba
 wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
 tar xvfz webradio.tar.gz
 mv webradio /mnt/
-chown -R root:root /mnt/webradio
+chown -R mpd:root /mnt/webradio
 rm webradio.tar.gz
 mkdir /mnt/usb-disk
 mkdir /var/lib/mpd/music
@@ -230,8 +232,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphi
 chmod +x /usr/bin/irq-archphile
 
 # Set USB DAC as default MPD soundcard
-#echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
-#sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
+echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
+sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Install custom kernel
 #echo -e "${red}Installing custom kernel...${NC}"
@@ -244,7 +246,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2
 
 # Disable haveged and enable rngd
 echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
-systemctl disable haveged
+systemctl disable haveged --noconfirm
+pacman -Rcsn haveged
 echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
 systemctl enable rngd
 

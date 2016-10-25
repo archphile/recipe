@@ -258,13 +258,13 @@ sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 sed -i '/pidof ympd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof rngd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof systemd-logind/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof systemd-udevd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof dbus-daemon/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof init/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof rngd/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof systemd-logind/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof systemd-udevd/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof dbus-daemon/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof init/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Disabling heartbeat blue led...${NC}" 
 sed -i '/heartbeat/s/^#//g' /usr/bin/archphile-optimize
 

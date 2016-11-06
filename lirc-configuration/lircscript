@@ -6,6 +6,7 @@ NC='\e[0m'
 
 # Copying needed files
 echo -e "${red}Copying the needed configuration files...${NC}" 
+mkdir /etc/conf.d
 wget https://raw.githubusercontent.com/archphile/recipe/master/lirc-configuration/lircd.conf -O /etc/conf.d/lircd.conf
 wget https://raw.githubusercontent.com/archphile/recipe/master/lirc-configuration/apple.conf -O /etc/lirc/lircd.conf.d/lircd.conf
 wget https://raw.githubusercontent.com/archphile/recipe/master/lirc-configuration/lircrc -O /etc/conf.d/lircrc

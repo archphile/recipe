@@ -134,7 +134,7 @@ ln -s /mnt/nas-samba
 ln -s /mnt/usb-disk
 wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
 tar xvfz webradio.tar.gz
-chown -R root:root webradio
+chown -R mpd webradio
 rm webradio.tar.gz
 gpasswd -a mpd audio
 

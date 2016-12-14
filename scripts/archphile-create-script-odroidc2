@@ -249,6 +249,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2
 echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
 systemctl disable haveged 
 pacman -Rcsn haveged --noconfirm
+touch /etc/conf.d/rngd
 echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
 systemctl enable rngd
 

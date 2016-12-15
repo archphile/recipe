@@ -1,5 +1,9 @@
 #!/bin/bash
 ######################Archphile Creation Script for Odroid C2############################
+#########################################################################################
+#Before running this script, you need to enable ssh root login with the following command
+#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
 clear
 red='\e[0;31m'
 NC='\e[0m'
@@ -101,8 +105,6 @@ pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supp
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
 pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
-#systemctl disable cronie
-#systemctl mask cronie
 pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
@@ -163,33 +165,10 @@ echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/udevil.conf -O /etc/udevil/udevil.conf
 systemctl enable devmon@root
 
-## limits.conf configuration
-#echo -e "${red}Changing /etc/security/limits.conf configuration...${NC}" 
-#wget http://archphile.org/lab/files/limits.conf
-#mv limits.conf /etc/security/limits.conf
-
 # journald.conf configuration and /var/log deletion
 echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
 sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
-#systemctl disable systemd-journald
-#systemctl mask systemd-journald
-#systemctl mask systemd-journal-flush.service
 rm -R /var/log
-
-# disabling systemd-logind
-#echo -e "${red}Disabling systemd-logind...${NC}"
-#systemctl disable systemd-logind
-#systemctl mask systemd-logind
-
-# turning off wifi power management
-#echo -e "${red}Turning off wifi power management...${NC}" 
-#sed -i 's/^#iwconfig wlan0 power off.*/iwconfig wlan0 power off/' /usr/bin/archphile-optimize
-
-# temporary fix for ControlGroup and ControlGroupAttribute mpd.service options
-#echo -e "${red}Applying temporart fix for mpd.service ...${NC}" 
-#sed -e '/ControlGroup/ s/^#*/#/' -i  /usr/lib/systemd/system/mpd.service
-#sed -e '/ControlGroupAttribute/ s/^#*/#/' -i  /usr/lib/systemd/system/mpd.service
-#systemctl reenable mpd
 
 # Applying various tweaks/mods
 echo -e "${red}Applying various tweaks/mods ...${NC}" 
@@ -219,14 +198,6 @@ echo -e "${red}In order to share your usb disk please enable and start smbd and 
 echo -e "${red}Setting shairport-sync configuration..${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 
-# change the password in first login
-#echo -e "${red}Setting a password change for next login...${NC}" 
-#change -d 0 root
-
-#fixing root permissions for sshd - CURRENTLY APPLYING THIS FIX BEFORE THE FIRST BOOT
-#echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
-#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-
 # IRQ affinity options
 echo -e "${red}Adding optional IRQ affinity options...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroidc2 -O /usr/bin/irq-archphile
@@ -235,11 +206,6 @@ chmod +x /usr/bin/irq-archphile
 # Set USB DAC as default MPD soundcard
 echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
 sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
-
-# Install custom kernel
-#echo -e "${red}Installing custom kernel...${NC}"
-#pacman -Sy linux-odroid-c2-archphile
-#pacman -Scc
 
 # Set custom boot.ini configuration
 echo -e "${red}Setting custom boot.ini...${NC}"
@@ -259,13 +225,6 @@ sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 sed -i '/pidof ympd/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof rngd/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof systemd-logind/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof systemd-udevd/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof dbus-daemon/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof init/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/pidof systemd-journald/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Disabling heartbeat blue led...${NC}" 
 sed -i '/heartbeat/s/^#//g' /usr/bin/archphile-optimize
 

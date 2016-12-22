@@ -101,7 +101,7 @@ pacman -Syu --noconfirm
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose --noconfirm
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc rngd-tools --noconfirm
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -213,12 +213,12 @@ echo -e "${red}Setting custom boot.ini...${NC}"
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2 -O /boot/boot.ini
 
 # Disable haveged and enable rngd
-echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
-systemctl disable haveged 
-pacman -Rcsn haveged --noconfirm
-touch /etc/conf.d/rngd
-echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
-systemctl enable rngd
+#echo -e "${red}Disabling haveged and enabling rngd...${NC}" 
+#systemctl disable haveged 
+#pacman -Rcsn haveged --noconfirm
+#touch /etc/conf.d/rngd
+#echo 'RNGD_OPTS="-o /dev/random -r /dev/hwrng"' > /etc/conf.d/rngd
+#systemctl enable rngd
 
 # Applying various tweaks by default
 echo -e "${red}Enabling IRQ affinity...${NC}" 

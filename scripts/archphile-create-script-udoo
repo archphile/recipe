@@ -98,10 +98,10 @@ cat >> /etc/pacman.conf <<"EOF"
 SigLevel = Never
 Server = http://archphile.org/repo/arm7-next
 
-[playground]
-SigLevel = Never
-Server = http://archphile.org/repo/playground/playground-arm7-next
-EOF
+#[playground]
+#SigLevel = Never
+#Server = http://archphile.org/repo/playground/playground-arm7
+#EOF
 
 echo -e "${red}Updating system...${NC}" 
 pacman-key --init && pacman-key -r 0EEA0BE0 && pacman-key --lsign-key 0EEA0BE0

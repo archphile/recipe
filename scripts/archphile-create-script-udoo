@@ -1,5 +1,10 @@
 #!/bin/bash
-######################Archphile Creation Script for Udoo############################
+######################Archphile Creation Script for Udoo#################################
+#########################################################################################
+#Before running this script, you need to enable ssh root login with the following command
+#and then log in as root:
+#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
 clear
 red='\e[0;31m'
 NC='\e[0m'
@@ -27,12 +32,12 @@ systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf
 cat > /etc/resolv.conf <<"EOF"
-# Google DNS
-nameserver 8.8.8.8
-nameserver 8.8.4.4
 # Opendns
-#nameserver 208.67.222.222 
-#nameserver 208.67.220.220
+nameserver 208.67.222.222 
+nameserver 208.67.220.220
+# Google
+#nameserver 8.8.8.8
+#nameserver 8.8.4.4
 EOF
 echo -e "${red}Disallowing dhcpcd to change DNS servers...${NC}" 
 echo "nohook resolv.conf" >>/etc/dhcpcd.conf
@@ -50,6 +55,7 @@ blacklist imxdrm
 blacklist dw_hdmi
 blacklist dw_hdmi_imx
 EOF
+
 
 # Network Configuration
 echo -e "${red}Changing netctl network configuration...${NC}" 
@@ -90,22 +96,24 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm7
+Server = http://archphile.org/repo/arm7-next
 
 [playground]
 SigLevel = Never
-Server = http://archphile.org/repo/playground/playground-arm7
+Server = http://archphile.org/repo/playground/playground-arm7-next
 EOF
 
-echo -e "${red}Updating system and installing needed packages...${NC}" 
+echo -e "${red}Updating system...${NC}" 
+pacman-key --init && pacman-key -r 0EEA0BE0 && pacman-key --lsign-key 0EEA0BE0
 pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap samba brutefir lirc hfsprogs --noconfirm
+echo -e "${red}Installing audio related packages...${NC}" 
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
+echo -e "${red}Installing system related packages...${NC}" 
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
 pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
-#systemctl disable cronie
-#systemctl mask cronie
 pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
@@ -128,48 +136,47 @@ systemctl enable avahi-daemon
 echo -e "${red}Creating directories needed by MPD and downloading webradios...${NC}" 
 mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
-wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
-tar xvfz webradio.tar.gz
-mv webradio /mnt/
-chown -R root:root /mnt/webradio
-rm webradio.tar.gz
 mkdir /mnt/usb-disk
 mkdir /var/lib/mpd/music
 chown -R mpd /var/lib/mpd
 cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
-ln -s /mnt/webradio
 ln -s /mnt/usb-disk
+wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
+tar xvfz webradio.tar.gz
+chown -R mpd webradio
+rm webradio.tar.gz
 gpasswd -a mpd audio
+
+# setting the USB Dac as default sound card
+echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
+cat > /etc/asound.conf <<"EOF"
+pcm.!default {
+        type hw
+        card 0
+}
+
+ctl.!default {
+        type hw
+        card 0
+}
+EOF
 
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/udevil.conf -O /etc/udevil/udevil.conf
 systemctl enable devmon@root
 
-## limits.conf configuration
-#echo -e "${red}Changing /etc/security/limits.conf configuration...${NC}" 
-#wget http://archphile.org/lab/files/limits.conf
-#mv limits.conf /etc/security/limits.conf
-
 # journald.conf configuration and /var/log deletion
 echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
 sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
-#systemctl disable systemd-journald
-#systemctl mask systemd-journald
-#systemctl mask systemd-journal-flush.service
 rm -R /var/log
 
-# disabling systemd-logind
-#echo -e "${red}Disabling systemd-logind...${NC}"
-#systemctl disable systemd-logind
-#systemctl mask systemd-logind
-
 # updating to latest ralink wireless firmware
-echo -e "${red}Updating wireless firmware rt2870usb to version 0.33...${NC}" 
-wget https://github.com/archphile/recipe/raw/master/files/udoo_wireless_firmware/rt2870.bin
-mv rt2870.bin /lib/firmware/rt2870.bin
+#echo -e "${red}Updating wireless firmware rt2870usb to version 0.33...${NC}" 
+#wget https://github.com/archphile/recipe/raw/master/files/udoo_wireless_firmware/rt2870.bin
+#mv rt2870.bin /lib/firmware/rt2870.bin
 
 # turning off wifi power management
 echo -e "${red}Turning off wifi power management...${NC}" 
@@ -215,18 +222,18 @@ echo -e "${red}In order to share your usb disk please enable and start smbd and 
 echo -e "${red}Setting shairport-sync configuration..${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 
-# change the password in first login
-#echo -e "${red}Setting a password change for next login...${NC}" 
-#change -d 0 root
-
-#fixing root permissions for sshd - CURRENTLY APPLYING THIS FIX BEFORE THE FIRST BOOT
-#echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
-#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 # IRQ affinity options
 echo -e "${red}Adding optional IRQ affinity options...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-udoo -O /usr/bin/irq-archphile
 chmod +x /usr/bin/irq-archphile
+
+# Applying various tweaks by default
+echo -e "${red}Enabling IRQ affinity...${NC}" 
+sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
+echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
+sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/pidof ympd/s/^#//g' /usr/bin/archphile-optimize
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

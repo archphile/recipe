@@ -101,9 +101,9 @@ pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsu
 pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
-echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
-mkdir /etc/systemd/system/mpd.service.d
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/user.conf -O /etc/systemd/system/mpd.service.d/user.conf
+#echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
+#mkdir /etc/systemd/system/mpd.service.d
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/user.conf -O /etc/systemd/system/mpd.service.d/user.conf
 
 # Setting multi-user.target as the new default target
 echo -e "${red}Setting default systemd target...${NC}" 

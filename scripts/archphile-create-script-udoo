@@ -45,15 +45,26 @@ echo "nohook resolv.conf" >>/etc/dhcpcd.conf
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist rpcsec_gss_krb5
 blacklist imxdrm
-blacklist imx-hdmi
 blacklist imx_ipuv3_crtc
 blacklist imx_ipu_v3
-blacklist drm_kms_helper
 blacklist imxdrm
 blacklist dw_hdmi
 blacklist dw_hdmi_imx
+blacklist snd_soc_fsl_asrc
+blacklist snd_soc_fsl_asoc_card
+blacklist coda
+blacklist v4l2_mem2mem
+blacklist videobuf2_dma_contig
+blacklist videobuf2_vmalloc
+blacklist videobuf2_v4l2
+blacklist videobuf2_vmalloc
+blacklist videobuf2_memops
+blacklist videobuf2_v4l2
+blacklist videobuf2_core
+blacklist cfg80211
+blacklist snd_soc_fsl_ssi
+blacklist snd_soc_imx_audmux
 EOF
 
 
@@ -101,7 +112,7 @@ Server = http://archphile.org/repo/arm7-next
 #[playground]
 #SigLevel = Never
 #Server = http://archphile.org/repo/playground/playground-arm7
-#EOF
+EOF
 
 echo -e "${red}Updating system...${NC}" 
 pacman-key --init && pacman-key -r 0EEA0BE0 && pacman-key --lsign-key 0EEA0BE0

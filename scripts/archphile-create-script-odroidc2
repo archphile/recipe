@@ -111,6 +111,12 @@ echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}"
 pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 pacman -Scc
 
+# Installing mainline kernel and uboot
+echo -e "${red}Installing mainline kernel and uboot and cleaning pacman cache...${NC}" 
+pacman -R uboot-odroid-c2 --noconfirm
+pacman -S linux-aarch64-rc uboot-odroid-c2-mainline --noconfirm
+pacman -Scc
+
 # Bypassing new User=mpd systemd configuration 
 #echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
 #mkdir /etc/systemd/system/mpd.service.d
@@ -145,22 +151,22 @@ rm webradio.tar.gz
 gpasswd -a mpd audio
 
 # Alsa configuration using nrpacks, a command recently reintroduced in odroid kernels
-echo -e "${red}Creating Alsa configuration...${NC}" 
-cat > /etc/modprobe.d/alsa-base.conf <<"EOF"
-options snd-usb-audio nrpacks=1
-EOF
+#echo -e "${red}Creating Alsa configuration...${NC}" 
+#cat > /etc/modprobe.d/alsa-base.conf <<"EOF"
+#options snd-usb-audio nrpacks=1
+#EOF
 
 # setting the USB Dac as default sound card
 echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
 cat > /etc/asound.conf <<"EOF"
 pcm.!default {
         type hw
-        card 1
+        card 0
 }
 
 ctl.!default {
         type hw
-        card 1
+        card 0
 }
 EOF
 
@@ -212,8 +218,8 @@ echo -e "${red}Setting default sound card in mpd.conf...${NC}"
 sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Set custom boot.ini configuration
-echo -e "${red}Setting custom boot.ini...${NC}"
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2 -O /boot/boot.ini
+#echo -e "${red}Setting custom boot.ini...${NC}"
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.ini.c2 -O /boot/boot.ini
 
 # Disable haveged and enable rngd
 #echo -e "${red}Disabling haveged and enabling rngd...${NC}" 

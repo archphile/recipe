@@ -96,7 +96,7 @@ Server = http://archphile.org/repo/aarch64-next
 #SigLevel = Required TrustedOnly
 #SigLevel = Never
 #Server = http://archphile.org/repo/playground/playground-aarch64
-#EOF
+EOF
 
 echo -e "${red}Updating system...${NC}" 
 #pacman-key --init && pacman-key -r 0EEA0BE0 && pacman-key --lsign-key 0EEA0BE0
@@ -112,10 +112,10 @@ pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsu
 pacman -Scc
 
 # Installing mainline kernel and uboot
-echo -e "${red}Installing mainline kernel and uboot and cleaning pacman cache...${NC}" 
-pacman -R uboot-odroid-c2 --noconfirm
-pacman -S linux-aarch64-rc uboot-odroid-c2-mainline --noconfirm
-pacman -Scc
+#echo -e "${red}Installing mainline kernel and uboot and cleaning pacman cache...${NC}" 
+#pacman -R uboot-odroid-c2 --noconfirm
+#pacman -S linux-aarch64-rc uboot-odroid-c2-mainline --noconfirm
+#pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
 #echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
@@ -161,12 +161,12 @@ echo -e "${red}Setting the USB DAC as the default sound card...${NC}"
 cat > /etc/asound.conf <<"EOF"
 pcm.!default {
         type hw
-        card 0
+        card 1
 }
 
 ctl.!default {
         type hw
-        card 0
+        card 1
 }
 EOF
 
@@ -214,8 +214,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphi
 chmod +x /usr/bin/irq-archphile
 
 # Set USB DAC as default MPD soundcard
-echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
-sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
+#echo -e "${red}Setting default sound card in mpd.conf...${NC}" 
+#sed -i 's/^device          "hw:0,0".*/device          "hw:1,0"/' /etc/mpd.conf
 
 # Set custom boot.ini configuration
 #echo -e "${red}Setting custom boot.ini...${NC}"

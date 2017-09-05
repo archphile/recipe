@@ -91,7 +91,7 @@ pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supp
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
-pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db ca-certificates which s-nail licenses jfsutils gettext logrotate --noconfirm
+pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 #systemctl disable cronie
 #systemctl mask cronie
 pacman -Scc

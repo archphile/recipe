@@ -15,6 +15,9 @@ initramfs initramfs-linux.img followkernel
 # Allo Boss Dac
 #dtoverlay=allo-boss-dac-pcm512x-audio
 
+# Allo Digione
+#dtoverlay=allo-digione
+
 # Allo Piano Dac 2.0/2.1
 #dtoverlay=allo-piano-dac-pcm512x-audio
 
@@ -23,6 +26,9 @@ initramfs initramfs-linux.img followkernel
 
 # Allo Piano Dac Plus 2.1 with Kali
 #dtoverlay=allo-piano-dac-plus-pcm512x-audio,glb_mclk
+
+# Dion Audio LOCO DAC-AMP
+#dtoverlay=dionaudio-loco-v2
 
 # Fe-Pi Audio Sound Card
 #dtoverlay=fe-pi-audio

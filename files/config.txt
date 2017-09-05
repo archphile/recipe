@@ -8,7 +8,9 @@ initramfs initramfs-linux.img followkernel
 # Please remove symbol "#" for the i2s dac you want to use
 # and Reboot. Do not remove "#" from the description but
 # only from the line that starts with "dtoverlay"
-#
+# Please visit http://bit.ly/2gIJgPK in order to read about
+# additional parameters for the following dacs
+
 
 # Allo Boss Dac
 #dtoverlay=allo-boss-dac-pcm512x-audio
@@ -25,7 +27,7 @@ initramfs initramfs-linux.img followkernel
 # Fe-Pi Audio Sound Card
 #dtoverlay=fe-pi-audio
 
-# Hifiberry Dac
+# Hifiberry Dac and Mamboberry Dac
 #dtoverlay=hifiberry-dac
 
 # Hifiberry Dac Plus

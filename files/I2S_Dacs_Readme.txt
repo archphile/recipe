@@ -1,4 +1,3 @@
-I
 Name:   akkordion-iqdacplus
 Info:   Configures the Digital Dreamtime Akkordion Music Player (based on the
         OEM IQAudIO DAC+ or DAC Zero module).

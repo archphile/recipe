@@ -1,5 +1,5 @@
 #!/bin/bash
-######################Archphile Creation Script for Raspberry Pi 2############################
+######################Archphile Creation Script for Raspberry Pi 2 and 3############################
 clear
 red='\e[0;31m'
 NC='\e[0m'
@@ -38,11 +38,9 @@ echo -e "${red}Disallowing dhcpcd to change DNS servers...${NC}"
 echo "nohook resolv.conf" >>/etc/dhcpcd.conf
 
 # Disabling various modules
-echo -e "${red}Disabling various modules...${NC}" 
-cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist snd_bcm2835
-blacklist rpcsec_gss_krb5
-EOF
+#echo -e "${red}Disabling various modules...${NC}" 
+#cat > /etc/modprobe.d/blacklist.conf <<"EOF"
+#EOF
 
 # Network Configuration
 echo -e "${red}Changing netctl network configuration...${NC}" 
@@ -83,19 +81,14 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm7
-
-[playground]
-SigLevel = Never
-Server = http://archphile.org/repo/playground/playground-arm7
+Server = http://archphile.org/repo/arm7-next
 EOF
-echo -e "${red}Updating system and installing needed packages...${NC}" 
-pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize i2select upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap hfsprogs dosfstools samba lirc crda exfat-utils mpdscribble --noconfirm
+echo -e "${red}Installing audio related packages...${NC}" 
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
 
-# Removing unneeded packages and cleaning pacman cache
-echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
-pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
+echo -e "${red}Installing system related packages...${NC}" 
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+
 #systemctl disable cronie
 #systemctl mask cronie
 pacman -Scc
@@ -120,19 +113,17 @@ systemctl enable avahi-daemon
 echo -e "${red}Creating directories needed by MPD and downloading webradios...${NC}" 
 mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
-wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
-tar xvfz webradio.tar.gz
-mv webradio /mnt/
-chown -R root:root /mnt/webradio
-rm webradio.tar.gz
 mkdir /mnt/usb-disk
-mkdir /var/lib/mpd/music 
+mkdir /var/lib/mpd/music
 chown -R mpd /var/lib/mpd
 cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
-ln -s /mnt/webradio
 ln -s /mnt/usb-disk
+wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
+tar xvfz webradio.tar.gz
+chown -R mpd webradio
+rm webradio.tar.gz
 gpasswd -a mpd audio
 
 # Alsa configuration
@@ -141,6 +132,20 @@ gpasswd -a mpd audio
 ##options snd slots=snd_usb_audio,snd_bcm2835
 #options snd_usb_audio index=0 nrpacks=8
 #EOF
+
+# setting the USB or I2S DAC as default sound card
+echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
+cat > /etc/asound.conf <<"EOF"
+pcm.!default {
+        type hw
+        card 0
+}
+
+ctl.!default {
+        type hw
+        card 0
+}
+EOF
 
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
@@ -228,12 +233,12 @@ echo -e "${red}Installing custom Archphile kernel...${NC}"
 #pacman -Scc
 
 # Changing cmdline options
-#echo -e "${red}Updating cmdline.txt...${NC}" 
-#wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
+echo -e "${red}Updating cmdline.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/packages/master/linux-raspberrypi-archphile/cmdline.txt -O /boot/cmdline.txt
 
 # Changing config.txt options
-#echo -e "${red}Updating config.txt...${NC}" 
-#wget https://raw.githubusercontent.com/archphile/packages/master/i2select/config.txt.orig -O /boot/config.txt
+echo -e "${red}Updating config.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/packages/master/i2select/config.txt.orig -O /boot/config.txt
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

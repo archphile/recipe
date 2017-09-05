@@ -27,7 +27,7 @@ initramfs initramfs-linux.img followkernel
 # Fe-Pi Audio Sound Card
 #dtoverlay=fe-pi-audio
 
-# Hifiberry Dac and Mamboberry Dac
+# Hifiberry and Mamboberry Dacs
 #dtoverlay=hifiberry-dac
 
 # Hifiberry Dac Plus

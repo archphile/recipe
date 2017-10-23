@@ -36,6 +36,8 @@ chmod +x archphile-create-script-rpi-2
 
 The scrips are dependent on ArchlinuxARM builds for the supported devices, which means that they might not work or need modifications when a new ArchlinuxARM image is released.
 
+All scripts are licensed under the GNU GPL V2.
+
 
 
 

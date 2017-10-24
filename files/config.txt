@@ -3,6 +3,8 @@
 # General Settings
 gpu_mem=16
 initramfs initramfs-linux.img followkernel
+#dtoverlay=pi3-disable-wifi
+dtoverlay=pi3-disable-bt
 
 # I2S Dacs Configuration
 # Please remove symbol "#" for the i2s dac you want to use

@@ -107,7 +107,7 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm7-next
+Server = http://archphile.org/repo/arm7
 
 #[playground]
 #SigLevel = Never
@@ -115,7 +115,6 @@ Server = http://archphile.org/repo/arm7-next
 EOF
 
 echo -e "${red}Updating system...${NC}" 
-pacman-key --init && pacman-key -r 0EEA0BE0 && pacman-key --lsign-key 0EEA0BE0
 pacman -Syu --noconfirm
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm

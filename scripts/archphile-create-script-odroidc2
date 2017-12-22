@@ -105,7 +105,7 @@ echo -e "${red}Installing system related packages...${NC}"
 pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 echo -e "${red}Installing Mainline Kernel...${NC}" 
-pacman -R uboot-odroid-c2
+pacman -R uboot-odroid-c2 --noconfirm
 rm /boot/boot.ini.pacsave
 pacman -Sy linux-aarch64 uboot-odroid-c2-mainline --noconfirm
 
@@ -113,12 +113,6 @@ pacman -Sy linux-aarch64 uboot-odroid-c2-mainline --noconfirm
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
 pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 pacman -Scc
-
-# Installing mainline kernel and uboot
-#echo -e "${red}Installing mainline kernel and uboot and cleaning pacman cache...${NC}" 
-#pacman -R uboot-odroid-c2 --noconfirm
-#pacman -S linux-aarch64-rc uboot-odroid-c2-mainline --noconfirm
-#pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
 #echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 

@@ -107,7 +107,11 @@ pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supp
 echo -e "${red}Installing Mainline Kernel...${NC}" 
 pacman -R uboot-odroid-c2 --noconfirm
 #rm /boot/boot.ini.pacsave
-pacman -Sy linux-aarch64 uboot-odroid-c2-mainline
+pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
+cd /boot
+./mkscr
+cd /root
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 

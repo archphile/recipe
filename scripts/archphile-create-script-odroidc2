@@ -88,14 +88,12 @@ ln -sf /dev/null ~/.bash_history
 echo -e "${red}Adding Archphile Repository...${NC}" 
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
-#SigLevel = Required TrustedOnly
 SigLevel = Never
-Server = http://archphile.org/repo/aarch64-next
+Server = http://archphile.org/repo/aarch64
 
-#[playground]
-#SigLevel = Required TrustedOnly
-#SigLevel = Never
-#Server = http://archphile.org/repo/playground/playground-aarch64
+[playground]
+SigLevel = Never
+Server = http://archphile.org/repo/playground/playground-aarch64
 EOF
 
 echo -e "${red}Updating system...${NC}" 
@@ -105,6 +103,11 @@ echo -e "${red}Installing audio related packages...${NC}"
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
 echo -e "${red}Installing system related packages...${NC}" 
 pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+
+echo -e "${red}Installing Mainline Kernel...${NC}" 
+pacman -R uboot-odroid-c2
+rm /boot/boot.ini.pacsave
+pacman -Sy linux-aarch64 uboot-odroid-c2-mainline --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -161,12 +164,12 @@ echo -e "${red}Setting the USB DAC as the default sound card...${NC}"
 cat > /etc/asound.conf <<"EOF"
 pcm.!default {
         type hw
-        card 1
+        card 0
 }
 
 ctl.!default {
         type hw
-        card 1
+        card 0
 }
 EOF
 

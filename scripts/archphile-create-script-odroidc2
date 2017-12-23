@@ -102,7 +102,7 @@ pacman -Syu --noconfirm
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 echo -e "${red}Installing Mainline Kernel...${NC}" 
 pacman -R uboot-odroid-c2 --noconfirm

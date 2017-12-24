@@ -17,7 +17,7 @@ https://archlinuxarm.org/platforms/armv8/amlogic/odroid-c2
 After that, login to your fresh ArchlinuxARM installation as root (you will need 
 PermitRootLogin yes" >> /etc/ssh/sshd_config):
 
-pacman -Sy wget
+    pacman -Sy wget
 
 The last step is to download and run the script. The direct links of the scripts are:
 
@@ -26,11 +26,11 @@ The last step is to download and run the script. The direct links of the scripts
 
 For example, if you have a Raspberry Pi 2 or 3 you have to do the following:
 
-wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
+    wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
 
-chmod +x archphile-create-script-rpi
+    chmod +x archphile-create-script-rpi
 
-./archphile-create-script-rpi
+    ./archphile-create-script-rpi
 
 
 The scrips are dependent on ArchlinuxARM builds for the supported devices, which means that they might not work or need modifications when a new ArchlinuxARM image is released.

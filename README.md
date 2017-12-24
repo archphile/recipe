@@ -5,6 +5,7 @@ This repository contains some very basic scripts that I use in order to create a
 In order to use these scripts you must first install ArchlinuxARM.
 
 - for Raspberry Pi 2 and 3:
+
 http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2
 https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3
 

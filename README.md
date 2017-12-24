@@ -20,18 +20,18 @@ pacman -Sy wget
 
 The last step is to download and run the script. The direct links of the scripts are:
 
-- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi-2
+- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
 - https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-udoo
 - https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-cuboxi
 
 
-For example, if you have a Raspberry Pi 2 you have to do the following:
+For example, if you have a Raspberry Pi 2 or 3 you have to do the following:
 
-wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi-2
+wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
 
-chmod +x archphile-create-script-rpi-2
+chmod +x archphile-create-script-rpi
 
-./archphile-create-script-rpi-2
+./archphile-create-script-rpi
 
 
 The scrips are dependent on ArchlinuxARM builds for the supported devices, which means that they might not work or need modifications when a new ArchlinuxARM image is released.

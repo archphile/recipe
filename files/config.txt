@@ -3,6 +3,9 @@
 # General Settings
 gpu_mem=16
 initramfs initramfs-linux.img followkernel
+dtparam=i2c_arm=on
+dtparam=i2s=on
+dtparam=audio=on
 #dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
 

@@ -107,7 +107,9 @@ pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wi
 echo -e "${red}Installing Mainline Kernel...${NC}" 
 pacman -R uboot-odroid-c2 --noconfirm
 #rm /boot/boot.ini.pacsave
-pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
+pacman -U http://archphile.org/lab/odrdoic2/packages/linux-aarch64-4.15.5-1-aarch64.pkg.tar.xz
+pacman -U http://archphile.org/lab/odroidc2/packages/linux-aarch64-headers-4.15.5-1-aarch64.pkg.tar.xz
+pacman -Sy uboot-odroid-c2-mainline uboot-tools
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
 ./mkscr

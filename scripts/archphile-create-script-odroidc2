@@ -104,12 +104,16 @@ pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-opti
 echo -e "${red}Installing system related packages...${NC}" 
 pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
-echo -e "${red}Installing Mainline Kernel...${NC}" 
+echo -e "${red}Installing Mainline Kernel...${NC}"
+ 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/modify_odroid_c2_dtb.sh -O /usr/local/bin/modify_odroid_c2_dtb.sh
+chmod +x /usr/local/bin/modify_odroid_c2_dtb.sh
 pacman -R uboot-odroid-c2 --noconfirm
 #rm /boot/boot.ini.pacsave
-pacman -U http://archphile.org/lab/odroidc2/packages/linux-aarch64-4.15.5-1-aarch64.pkg.tar.xz
-pacman -U http://archphile.org/lab/odroidc2/packages/linux-aarch64-headers-4.15.5-1-aarch64.pkg.tar.xz
-pacman -Sy uboot-odroid-c2-mainline uboot-tools
+#pacman -U http://archphile.org/lab/odroidc2/packages/linux-aarch64-4.15.5-1-aarch64.pkg.tar.xz
+#pacman -U http://archphile.org/lab/odroidc2/packages/linux-aarch64-headers-4.15.5-1-aarch64.pkg.tar.xz
+pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools dtc
+bash /usr/local/bin/modify_odroid_c2_dtb.sh
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
 ./mkscr

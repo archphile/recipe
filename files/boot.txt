@@ -13,4 +13,3 @@ if load ${devtype} ${devnum}:${distro_bootpart} ${kernel_addr_r} /boot/Image; th
     fi;
   fi;
 fi
-

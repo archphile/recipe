@@ -1,5 +1,9 @@
 #!/bin/bash
 ######################Archphile Creation Script for Raspberry Pi 2 and 3############################
+#Before running this script, you need to enable ssh root login with the following command
+#and then log in as root:
+#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
 clear
 red='\e[0;31m'
 NC='\e[0m'
@@ -81,13 +85,14 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm7-next
+Server = http://archphile.org/repo/arm7-next/09971A
 EOF
+
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
 
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S samba cifs-utils nfs-utils udevil ntfs-3g hfsprogs htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -217,23 +222,10 @@ echo -e "${red}In order to share your usb disk please enable and start smbd and 
 echo -e "${red}Setting shairport-sync configuration..${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 
-# change the password in first login
-#echo -e "${red}Setting a password change for next login...${NC}" 
-#chage -d 0 root
-
-#fixing root permissions for sshd - CURRENTLY APPLYING THIS FIX BEFORE THE FIRST BOOT
-#echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
-#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-
-# IRQ affinity options - CURRENTLY IMPOSSIBLE TO CHANGE AFFINITY FOR RPI2
+# IRQ affinity options - CURRENTLY IMPOSSIBLE TO CHANGE AFFINITY FOR RPI2/3
 #echo -e "${red}Adding optional IRQ affinity options...${NC}" 
 #wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi -O /usr/bin/irq-archphile
 #chmod +x /usr/bin/irq-archphile
-
-# Installing custom linux kernel that solves issues with 24 Bit reproduction using I2S
-echo -e "${red}Installing custom Archphile kernel...${NC}" 
-#pacman -S linux-raspberrypi-archphile crda 
-#pacman -Scc
 
 # Changing cmdline options
 echo -e "${red}Updating cmdline.txt...${NC}" 

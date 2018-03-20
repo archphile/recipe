@@ -88,6 +88,9 @@ SigLevel = Never
 Server = http://archphile.org/repo/arm7-next/09971B
 EOF
 
+echo -e "${red}Updating system...${NC}" 
+pacman -Syu --noconfirm
+
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
 

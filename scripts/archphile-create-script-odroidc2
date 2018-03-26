@@ -241,7 +241,7 @@ echo -e "${red}Enabling IRQ affinity...${NC}"
 sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof ympd/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/0 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Disabling heartbeat blue led...${NC}" 
 sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
 

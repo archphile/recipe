@@ -1,0 +1,65 @@
+#!/bin/bash
+# this command is used in order to unmute dac and set the volume to 100% during boot
+# 
+/usr/bin/unmute
+
+# please replace x with the id of your device 
+#
+# for further information visit http://archphile.org/howto/troubleshooting-pops-and-clicks
+#echo -n "x-x.x:x.x" > /sys/bus/usb/drivers/usbhid/unbind
+
+# this command sets noop scheduler during boot
+#
+echo noop > /sys/block/mmcblk0/queue/scheduler
+
+# this command sets ondemand cpu governor
+#
+#echo ondemand | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null
+
+# this command sets swappiness to 0
+#
+echo 0 > /proc/sys/vm/swappiness
+
+# commands to change various kernel parameters
+# please note that some of them might already have the mentioned value
+# feel free to experiment if you know what you' re doing!
+#
+#echo 1500000 > /proc/sys/kernel/sched_latency_ns
+#echo 1000000 > /proc/sys/kernel/sched_rt_period_us
+#echo 950000 > /proc/sys/kernel/sched_rt_runtime_us
+#echo 1 > /proc/sys/kernel/sched_autogroup_enabled
+#echo 10 > /proc/sys/kernel/sched_rr_timeslice_ms
+#echo 750000 > /proc/sys/kernel/sched_min_granularity_ns
+#echo 1000000 > /proc/sys/kernel/sched_wakeup_granularity_ns
+
+# Disable Odroid C2 heartbeat blue led
+#
+#echo default-on > /sys/class/leds/c2\:blue\:alive/trigger 
+
+# IRQ affinity optimization - Do not apply it if you have a Raspberry Pi!!!
+#
+#/usr/bin/irq-archphile
+
+# set various processes to be run on specific cores 
+#
+taskset -c -a -p 1 $(pidof mpd)
+taskset -c -p 2 $(pidof ympd)
+
+# wireless connection tweaks
+#
+#iwconfig wlan0 power off
+#iwconfig wlan0 frag 2346
+#iwconfig wlan0 rts 2347
+#iw reg set GR
+
+# local cover art support
+#
+# uncomment below if you use Mpdroid. The path to music is http://xxx.xxx.xxx.xxx:8080/music/
+#mongoose -listening_port 8080 -document_root /var/www/covers
+#
+# uncomment below if you use Mpod or Mpad. Please change the cover server address to http://xxx.xxx.xxx.xxx:8080
+#mongoose -listening_port 8080 -document_root /var/www/Music
+
+
+
+

@@ -239,6 +239,11 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline.txt
 echo -e "${red}Updating config.txt...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt -O /boot/config.txt
 
+# Applying a custom archphile-optimize script
+echo -e "${red}Fetching custom archphile-optimize...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/archphile-optimize.txt -O /usr/bin/archphile-optimize
+chmod +x /usr/bin/archphile-optimize
+
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
 rm /etc/ssh/ssh_host_*

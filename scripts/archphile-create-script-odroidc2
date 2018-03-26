@@ -243,7 +243,7 @@ echo -e "${red}Setting various processes to be run on specific cores...${NC}"
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 sed -i '/pidof ympd/s/^#//g' /usr/bin/archphile-optimize
 echo -e "${red}Disabling heartbeat blue led...${NC}" 
-sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

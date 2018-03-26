@@ -239,10 +239,10 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline.txt
 echo -e "${red}Updating config.txt...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt -O /boot/config.txt
 
-# Applying a custom archphile-optimize script
-echo -e "${red}Fetching custom archphile-optimize...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/archphile-optimize.txt -O /usr/bin/archphile-optimize
-chmod +x /usr/bin/archphile-optimize
+# Applying various tweaks by default
+echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
+sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 

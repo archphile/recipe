@@ -146,16 +146,15 @@ mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
 mkdir /mnt/usb-disk
 mkdir /var/lib/mpd/music
-chown -R mpd /var/lib/mpd
 cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
 ln -s /mnt/usb-disk
 wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
 tar xvfz webradio.tar.gz
-chown -R mpd webradio
 rm webradio.tar.gz
 gpasswd -a mpd audio
+chown -R mpd:audio /var/lib/mpd
 
 # Alsa configuration using nrpacks, a command recently reintroduced in odroid kernels
 #echo -e "${red}Creating Alsa configuration...${NC}" 

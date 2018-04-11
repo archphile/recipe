@@ -240,6 +240,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt 
 
 # Applying various tweaks by default
 echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
+sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
 

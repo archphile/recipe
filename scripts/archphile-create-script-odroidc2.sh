@@ -219,7 +219,7 @@ ctl.!default {
 EOF
 }
 
-unction c_udevil {
+function c_udevil {
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/udevil.conf -O /etc/udevil/udevil.conf

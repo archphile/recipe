@@ -1,5 +1,9 @@
 #!/bin/bash
-######################Archphile Creation Script for Raspberry Pi B/B+############################
+######################Archphile Creation Script for Raspberry Pi 2 and 3############################
+#Before running this script, you need to enable ssh root login with the following command
+#and then log in as root:
+#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
 clear
 red='\e[0;31m'
 NC='\e[0m'
@@ -40,8 +44,7 @@ echo "nohook resolv.conf" >>/etc/dhcpcd.conf
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist snd_bcm2835
-blacklist rpcsec_gss_krb5
+blacklist snd-bcm2835
 EOF
 
 # Network Configuration
@@ -83,23 +86,29 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm6
+Server = http://archphile.org/repo/arm7-next/09971B
 EOF
-echo -e "${red}Updating system and installing needed packages...${NC}" 
+
+echo -e "${red}Updating system...${NC}" 
 pacman -Syu --noconfirm
-pacman -S mpd-archphile mpc ympd-archphile archphile-optimize i2select upmpdcli-archphile shairport-sync alsa-utils cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd mongoose hd-idle alsacap hfsprogs dosfstools --noconfirm
+
+echo -e "${red}Installing audio related packages...${NC}" 
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
+
+echo -e "${red}Installing system related packages...${NC}" 
+pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
-pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db ca-certificates which s-nail licenses jfsutils gettext logrotate --noconfirm
+pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 #systemctl disable cronie
 #systemctl mask cronie
 pacman -Scc
 
 # Bypassing new User=mpd systemd configuration 
-echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
-mkdir /etc/systemd/system/mpd.service.d
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/user.conf -O /etc/systemd/system/mpd.service.d/user.conf
+#echo -e "${red}Fetching user.conf in order to bypass User=mpd...${NC}" 
+#mkdir /etc/systemd/system/mpd.service.d
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/user.conf -O /etc/systemd/system/mpd.service.d/user.conf
 
 # Setting multi-user.target as the new default target
 echo -e "${red}Setting default systemd target...${NC}" 
@@ -116,20 +125,17 @@ systemctl enable avahi-daemon
 echo -e "${red}Creating directories needed by MPD and downloading webradios...${NC}" 
 mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
-wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
-tar xvfz webradio.tar.gz
-mv webradio /mnt/
-chown -R root:root /mnt/webradio
-rm webradio.tar.gz
 mkdir /mnt/usb-disk
 mkdir /var/lib/mpd/music
-chown -R mpd /var/lib/mpd
 cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
-ln -s /mnt/webradio
 ln -s /mnt/usb-disk
+wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
+tar xvfz webradio.tar.gz
+rm webradio.tar.gz
 gpasswd -a mpd audio
+chown -R mpd:audio /var/lib/mpd
 
 # Alsa configuration
 #echo -e "${red}Creating Alsa configuration...${NC}" 
@@ -137,6 +143,20 @@ gpasswd -a mpd audio
 ##options snd slots=snd_usb_audio,snd_bcm2835
 #options snd_usb_audio index=0 nrpacks=8
 #EOF
+
+# setting the USB or I2S DAC as default sound card
+echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
+cat > /etc/asound.conf <<"EOF"
+pcm.!default {
+        type hw
+        card 0
+}
+
+ctl.!default {
+        type hw
+        card 0
+}
+EOF
 
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
@@ -205,18 +225,29 @@ echo -e "${red}In order to share your usb disk please enable and start smbd and 
 echo -e "${red}Setting shairport-sync configuration..${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 
-# change the password in first login
-#echo -e "${red}Setting a password change for next login...${NC}" 
-#chage -d 0 root
+# IRQ affinity options - CURRENTLY IMPOSSIBLE TO CHANGE AFFINITY FOR RPI2/3
+#echo -e "${red}Adding optional IRQ affinity options...${NC}" 
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi -O /usr/bin/irq-archphile
+#chmod +x /usr/bin/irq-archphile
 
-#fixing root permissions for sshd - CURRENTLY APPLYING THIS FIX BEFORE THE FIRST BOOT
-#echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
-#echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+# Changing cmdline options
+echo -e "${red}Updating cmdline.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline.txt -O /boot/cmdline.txt
+
+# Changing config.txt options
+echo -e "${red}Updating config.txt...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt -O /boot/config.txt
+
+# Applying various tweaks by default
+echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
+sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
+sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
 rm /etc/ssh/ssh_host_*
-rm /root/archphile-create-script* 
+rm /root/archphile-create-script*
 
 echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}" 
 

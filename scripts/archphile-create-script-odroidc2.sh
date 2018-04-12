@@ -72,9 +72,11 @@ function c_modules {
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist w1_gpio
-blacklist spi_gpio
-blacklist gxbb_wdt
+blacklist dw_hdmi_cec
+blacklist meson_dw_hdmi
+blacklist dw_hdmi
+blacklist cec
+blacklist meson_ir
 EOF
 }
 
@@ -291,7 +293,7 @@ c_password
 c_hostname
 c_motd
 c_dns
-#c_modules
+c_modules
 c_network
 c_ipv6
 c_timezone

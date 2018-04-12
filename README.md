@@ -6,7 +6,6 @@ In order to use these scripts you must first install ArchlinuxARM.
 
 - for Raspberry Pi 2 and 3:
 
-http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2
 https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3
 
 - for Odroid C2:
@@ -21,14 +20,14 @@ PermitRootLogin yes" >> /etc/ssh/sshd_config):
 
 The last step is to download and run the script. The direct links of the scripts are:
 
-- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
-- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-odroidc2
+- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi.sh
+- https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-odroidc2.sh
 
 For example, if you have a Raspberry Pi 2 or 3 you have to do the following:
 
-    wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi
+    wget https://raw.githubusercontent.com/archphile/recipe/master/scripts/archphile-create-script-rpi.sh
 
-    chmod +x archphile-create-script-rpi
+    chmod +x archphile-create-script-rpi.sh
 
     ./archphile-create-script-rpi
 

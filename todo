@@ -1,7 +1,0 @@
-- resolve systemd-journald not starting with storage=none  - DONE
-- update new rpi config.txt in i2select package - DONE
-- update webradios (radioparadise aac 320) - DONE
-- support hfs usb disks - DONE
-- support iqaudio amp
-- add default odroid boot.ini file DONE for C2
-- add documentation based on archwiki for nfs clients

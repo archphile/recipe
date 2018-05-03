@@ -154,11 +154,12 @@ pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-opti
 function c_kernelpack {
 # Installing mainline kernel	
 echo -e "${red}Installing Mainline Kernel...${NC}"
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/modify_odroid_c2_dtb.sh -O /usr/local/bin/modify_odroid_c2_dtb.sh
-chmod +x /usr/local/bin/modify_odroid_c2_dtb.sh
+#wget https://raw.githubusercontent.com/archphile/recipe/master/files/modify_odroid_c2_dtb.sh -O /usr/local/bin/modify_odroid_c2_dtb.sh
+#chmod +x /usr/local/bin/modify_odroid_c2_dtb.sh
 pacman -R uboot-odroid-c2 --noconfirm
-pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools dtc
-bash /usr/local/bin/modify_odroid_c2_dtb.sh
+pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
+#pacman -Sy dtc
+#bash /usr/local/bin/modify_odroid_c2_dtb.sh
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
 ./mkscr

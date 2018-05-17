@@ -72,7 +72,7 @@ function c_modules {
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist snd-bcm2835
+#blacklist snd-bcm2835
 EOF
 }
 

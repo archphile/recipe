@@ -16,20 +16,22 @@ dtoverlay=pi3-disable-bt
 # Please visit http://bit.ly/2gIJgPK in order to read about
 # additional parameters for the following dacs
 
+# Allo Katana DAC
+#dtoverlay=allo-katana-dac-audio
 
-# Allo Boss Dac
+# Allo Boss DAC
 #dtoverlay=allo-boss-dac-pcm512x-audio
 
 # Allo Digione
 #dtoverlay=allo-digione
 
-# Allo Piano Dac 2.0/2.1
+# Allo Piano DAC 2.0/2.1
 #dtoverlay=allo-piano-dac-pcm512x-audio
 
-# Allo Piano Dac Plus 2.1
+# Allo Piano DAC Plus 2.1
 #dtoverlay=allo-piano-dac-plus-pcm512x-audio
 
-# Allo Piano Dac Plus 2.1 with Kali
+# Allo Piano DAC Plus 2.1 with Kali
 #dtoverlay=allo-piano-dac-plus-pcm512x-audio,glb_mclk
 
 # Dion Audio LOCO DAC-AMP
@@ -38,22 +40,22 @@ dtoverlay=pi3-disable-bt
 # Fe-Pi Audio Sound Card
 #dtoverlay=fe-pi-audio
 
-# Hifiberry and Mamboberry Dacs
+# Hifiberry and Mamboberry DACs
 #dtoverlay=hifiberry-dac
 
-# Hifiberry Dac Plus
+# Hifiberry DAC Plus
 #dtoverlay=hifiberry-dacplus
 
 # Hifiberry Digi+ Pro
 #dtoverlay=hifiberry-digi-pro
 
-# IQaudio Dac
+# IQaudio DAC
 #dtoverlay=iqaudio-dac
 
-# IQaudio Dac+
+# IQaudio DAC+
 #dtoverlay=iqaudio-dacplus
 
-# JustBoom Dac Hat
+# JustBoom DAC Hat
 #dtoverlay=justboom-dac
 
 #JustBoom Digi Hat

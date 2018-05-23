@@ -146,6 +146,10 @@ function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
+
+# Making python2 default for upmpdcli
+echo -e "${red}Making python2 the default one...${NC}" 
+ln -s /usr/bin/python2 /usr/bin/python
 }
 
 function c_purgepack {

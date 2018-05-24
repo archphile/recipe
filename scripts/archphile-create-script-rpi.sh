@@ -128,7 +128,11 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/arm7-next/09971B
+Server = http://archphile.org/repo/arm7/09973
+
+[playground]
+SigLevel = Never
+Server = http://archphile.org/repo/playground/arm7/09973
 EOF
 }
 

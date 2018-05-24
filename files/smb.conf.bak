@@ -1,18 +1,16 @@
 [global]
-server string = Archphile SMB Server
-security = user
+
 guest account = root
 map to guest = bad user
 log level = 0
 syslog = 0
 directory mask = 0775
 create mask = 0775
-browseable = yes
 
 [Archphile USB Disks]
-comment = Archphile USB Disks
+
 path = /mnt/usb-disk
 read only = no
-guest ok = yes
+public = yes
 follow symlinks = yes
 wide links = yes

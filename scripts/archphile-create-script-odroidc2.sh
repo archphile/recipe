@@ -269,8 +269,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-s
 function c_irq {
 # IRQ affinity options
 echo -e "${red}Adding optional IRQ affinity options...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroidc2 -O /usr/bin/irq-archphile
-chmod +x /usr/bin/irq-archphile
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroidc2 -O /usr/local/bin/irq-archphile
+chmod +x /usr/local/bin/irq-archphile
 }
 
 function c_tweaks {

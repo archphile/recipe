@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /proc/asound/card*/pcm*p/sub*/hw_params

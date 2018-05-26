@@ -156,7 +156,7 @@ pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wi
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
 
 # Making python2 default for upmpdcli
 echo -e "${red}Making python2 the default one...${NC}" 

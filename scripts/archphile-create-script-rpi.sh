@@ -134,6 +134,10 @@ Server = http://archphile.org/repo/archphile/arm7/09973
 SigLevel = Never
 Server = http://archphile.org/repo/playground/arm7/09973
 EOF
+
+# Fetching Custom Pacman Mirrorlist
+echo -e "${red}Fetching custom mirrorlist...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/mirrorlist -O /etc/pacman.d/mirrorlist
 }
 
 function c_syspack {

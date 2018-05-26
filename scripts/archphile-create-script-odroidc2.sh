@@ -99,7 +99,7 @@ echo "noipv6rs" >>/etc/dhcpcd.conf
 echo "noipv6" >>/etc/dhcpcd.conf
 }
 
-unction c_timezone {
+function c_timezone {
 # Locale and timezone configuration
 systemctl disable systemd-timesyncd
 systemctl mask systemd-timesyncd

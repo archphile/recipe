@@ -265,7 +265,7 @@ function c_samba {
 # sharing usb disks with samba configuration
 echo -e "${red}Fetching samba configuration for sharing usb disks...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/smb.conf -O /etc/samba/smb.conf
-echo -e "${red}In order to share your usb disk please enable and start smbd and nmbd service...${NC}"
+echo -e "${red}In order to share your usb disk please enable and start smb and nmb service...${NC}"
 }
 
 function c_shairport {

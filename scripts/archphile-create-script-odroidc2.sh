@@ -215,11 +215,11 @@ cd /var/lib/mpd/music
 ln -s /mnt/nas-nfs
 ln -s /mnt/nas-samba
 ln -s /mnt/usb-disk
-wget https://github.com/archphile/recipe/raw/master/files/webradio.tar.gz
-tar xvfz webradio.tar.gz
-rm webradio.tar.gz
 gpasswd -a mpd audio
 chown -R mpd:audio /var/lib/mpd
+wget https://raw.githubusercontent.com/archphile/WebRadios/master/archphile-script/wrf.sh
+chmod +x wrf.sh
+./wrf.sh
 }
 
 function c_asound {

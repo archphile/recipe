@@ -147,7 +147,7 @@ pacman -Syu --noconfirm
 
 # Installing system packages
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
 }
 
 function c_archpack {

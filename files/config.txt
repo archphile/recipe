@@ -11,8 +11,16 @@ dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
 disable_pvt=1
 
-# microsd overclock - enable it only if you know what you are doing
-#dtoverlay=sdhost,overclock_50=60
+# Disable ACT LED
+#dtparam=act_led_trigger=none
+#dtparam=act_led_activelow=on
+
+# Disable PWR LED
+#dtparam=pwr_led_trigger=none
+#dtparam=pwr_led_activelow=on
+
+# Microsd overclock - enable it only if you know what you are doing!
+#dtoverlay=sdhost,overclock_50=100
 
 # I2S Dacs Configuration
 # Please remove symbol "#" for the i2s dac you want to use

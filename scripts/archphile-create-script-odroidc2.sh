@@ -1,4 +1,4 @@
-#!/bin/bash
+a#!/bin/bash
 ###################### Archphile Creation Script for Odroid C2 #############################
 ##  Before running this script, you need to enable ssh root login with the following command"
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
@@ -156,7 +156,7 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
 
 # Making python2 default for upmpdcli
 echo -e "${red}Making python2 the default one...${NC}" 
@@ -291,13 +291,13 @@ function c_tweaks {
 echo -e "${red}Applying various tweaks/mods ...${NC}" 
 echo "Archphile \r (\l)" > /etc/issue
 sed -i 's/#Color/Color/' /etc/pacman.conf
-echo -e "${red}Enabling IRQ affinity...${NC}" 
-sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
-echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
-sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/0 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
-echo -e "${red}Disabling heartbeat blue led...${NC}" 
-sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
+#echo -e "${red}Enabling IRQ affinity...${NC}" 
+#sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
+#echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
+#sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/0 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
+#echo -e "${red}Disabling heartbeat blue led...${NC}" 
+#sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
 }
 
 function c_cleanup {

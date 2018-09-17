@@ -153,7 +153,7 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
 
 # Making python2 default for upmpdcli
 echo -e "${red}Making python2 the default one...${NC}" 
@@ -287,9 +287,9 @@ function c_tweaks {
 echo -e "${red}Applying various tweaks/mods ...${NC}" 
 echo "Archphile \r (\l)" > /etc/issue
 sed -i 's/#Color/Color/' /etc/pacman.conf
-sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
-sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
+#sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+#sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
 }
 
 function c_cleanup {

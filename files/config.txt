@@ -6,8 +6,13 @@ initramfs initramfs-linux.img followkernel
 dtparam=i2c_arm=on
 dtparam=i2s=on
 dtparam=audio=off
+dtparam=spi=off
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
+disable_pvt=1
+
+# microsd overclock - enable it only if you know what you are doing
+#dtoverlay=sdhost,overclock_50=60
 
 # I2S Dacs Configuration
 # Please remove symbol "#" for the i2s dac you want to use

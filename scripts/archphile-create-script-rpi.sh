@@ -290,6 +290,10 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 #sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
 #sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 #sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
+# Applying various tweaks by default
+echo -e "${red}Adding hub-ctrl ...${NC}"
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/hub-ctrl -O /usr/local/bin/hub-ctrl
+chmod+x /usr/local/bin/hub-ctrl
 }
 
 function c_cleanup {

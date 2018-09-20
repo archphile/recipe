@@ -204,7 +204,7 @@ function c_services {
 # Enabling systemd services
 echo -e "${red}Enabling needed Systemd services...${NC}" 
 systemctl enable mpd
-systemctl enable ympd
+systemctl enable mympd
 systemctl enable archphile
 systemctl enable avahi-daemon
 }

@@ -153,7 +153,7 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
 
 # Making python2 default for upmpdcli
 echo -e "${red}Making python2 the default one...${NC}" 
@@ -186,7 +186,7 @@ function c_services {
 # Enabling systemd services
 echo -e "${red}Enabling needed Systemd services...${NC}" 
 systemctl enable mpd
-systemctl enable ympd
+systemctl enable mympd
 systemctl enable archphile
 systemctl enable avahi-daemon
 }
@@ -293,7 +293,7 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 # Applying various tweaks by default
 echo -e "${red}Adding hub-ctrl ...${NC}"
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/hub-ctrl -O /usr/local/bin/hub-ctrl
-chmod+x /usr/local/bin/hub-ctrl
+chmod +x /usr/local/bin/hub-ctrl
 }
 
 function c_cleanup {

@@ -10,6 +10,7 @@ dtparam=spi=off
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
 disable_pvt=1
+#dtparam=eee=off
 
 # Disable ACT LED
 #dtparam=act_led_trigger=none

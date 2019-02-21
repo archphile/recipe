@@ -153,11 +153,11 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap mongoose librespot-archphile squeezelite-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpdscribble mpc ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap quickserve librespot-archphile uhubctl --noconfirm
 
 # Making python2 default for upmpdcli
-echo -e "${red}Making python2 the default one...${NC}" 
-ln -s /usr/bin/python2 /usr/bin/python
+#echo -e "${red}Making python2 the default one...${NC}" 
+#ln -s /usr/bin/python2 /usr/bin/python
 
 # Downloading perfcheck command tool
 echo -e "${red}Downloading perfcheck tool...${NC}" 
@@ -165,8 +165,8 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/perfcheck -
 chmod +x /usr/local/bin/perfcheck
 
 #linking mpd library for myMPD local coverart
-echo -e "${red}Symlinking MPD library for myMPD local cover art...${NC}" 
-ln -s /var/lib/mpd/music/ /usr/share/mympd/htdocs/library
+#echo -e "${red}Symlinking MPD library for myMPD local cover art...${NC}" 
+#ln -s /var/lib/mpd/music/ /usr/share/mympd/htdocs/library
 }
 
 function c_purgepack {

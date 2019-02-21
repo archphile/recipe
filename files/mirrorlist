@@ -1,7 +1,12 @@
-#Server = http://tardis.tiny-vps.com/aarm/repos/2018/09/20/$arch/$repo
+#Server = http://tardis.tiny-vps.com/aarm/repos/2019/02/21/$arch/$repo
 #
 # Arch Linux ARM repository mirrorlist
 # Generated on 2018-03-23
+#
+
+#
+# Arch Linux ARM repository mirrorlist
+# Generated on 2018-09-03
 #
 
 ## Geo-IP based mirror selection and load balancing
@@ -20,10 +25,6 @@ Server = http://mirror.archlinuxarm.org/$arch/$repo
 ### Denmark
 ## Aalborg
 # Server = http://dk.mirror.archlinuxarm.org/$arch/$repo
-
-### Finland
-## Tampere
-# Server = http://fi.mirror.archlinuxarm.org/$arch/$repo
 
 ### France
 ## Ain
@@ -76,9 +77,10 @@ Server = http://mirror.archlinuxarm.org/$arch/$repo
 # Server = http://fl.us.mirror.archlinuxarm.org/$arch/$repo
 ## Illinois
 # Server = http://il.us.mirror.archlinuxarm.org/$arch/$repo
-## Michigan
-# Server = http://mi.us.mirror.archlinuxarm.org/$arch/$repo
+## New Jersey
+# Server = http://nj.us.mirror.archlinuxarm.org/$arch/$repo
 
 ### Vietnam
 ## Da Nang
 # Server = http://vn.mirror.archlinuxarm.org/$arch/$repo
+

@@ -57,10 +57,10 @@ systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf
 cat > /etc/resolv.conf <<"EOF"
-# Google DNS
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-# Opendns
+# Cloudflare DNS
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+# Opendns DNS
 #nameserver 208.67.222.222 
 #nameserver 208.67.220.220
 EOF

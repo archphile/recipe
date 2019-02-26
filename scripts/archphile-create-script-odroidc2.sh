@@ -57,10 +57,10 @@ systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf
 cat > /etc/resolv.conf <<"EOF"
-# Google DNS
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-# Opendns
+# Cloudflare DNS
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+# Opendns DNS
 #nameserver 208.67.222.222 
 #nameserver 208.67.220.220
 EOF
@@ -72,11 +72,7 @@ function c_modules {
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist dw_hdmi_cec
-blacklist meson_dw_hdmi
-blacklist dw_hdmi
-blacklist cec
-blacklist meson_ir
+blacklist
 EOF
 }
 
@@ -315,7 +311,7 @@ c_password
 c_hostname
 c_motd
 c_dns
-c_modules
+#c_modules
 c_network
 c_ipv6
 c_timezone

@@ -26,4 +26,4 @@ START_HD_IDLE=true
 #                          becoming a daemon and print debugging info to
 #                          stdout/stderr
 #  -h                      Print usage information.
-HD_IDLE_OPTS="-i 180 -l /var/log/hd-idle.log"
+HD_IDLE_OPTS="-i 3600 -l /var/log/hd-idle.log"

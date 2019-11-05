@@ -1,4 +1,4 @@
-a#!/bin/bash
+#!/bin/bash
 ###################### Archphile Creation Script for Odroid C2 #############################
 ##  Before running this script, you need to enable ssh root login with the following command"
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
@@ -52,7 +52,7 @@ nano /etc/motd
 
 function c_dns {
 # Changing DNS servers
-echo -e "${red}Changing to Google DNS servers...${NC}" 
+echo -e "${red}Changing DNS servers...${NC}" 
 systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf

@@ -52,7 +52,7 @@ nano /etc/motd
 
 function c_dns {
 # Changing DNS servers
-echo -e "${red}Changing to Google DNS servers...${NC}" 
+echo -e "${red}Changing DNS servers...${NC}" 
 systemctl disable systemd-resolved
 systemctl mask systemd-resolved
 rm /etc/resolv.conf

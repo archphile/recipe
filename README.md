@@ -37,7 +37,11 @@ The scrips are dependent on ArchlinuxARM builds for the supported devices, which
 All scripts are licensed under the GNU GPL V2.
 
 
+## Note (2019-12-11)
 
+These scripts need constant changes in order to be compliant with a rolling release distro like ArchlinuxARM.
+
+In addition to the above, archphile packages need rebuilding after several libraries updates. I used to update/rebuild the packages before each release. I don't anymore. This means that if you use the scripts with my repos on it, your installation will fail 100%.
 
 
 

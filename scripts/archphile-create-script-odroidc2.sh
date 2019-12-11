@@ -207,7 +207,7 @@ systemctl enable avahi-daemon
 
 function c_mpdconf {
 # Creating stuff for MPD
-echo -e "${red}Creating directories needed by MPD and downloading webradios...${NC}" 
+echo -e "${red}Creating directories needed by MPD, downloading webradios and adding mpdprio command ...${NC}" 
 mkdir /mnt/nas-nfs
 mkdir /mnt/nas-samba
 mkdir /mnt/usb-disk
@@ -221,6 +221,8 @@ chown -R mpd:audio /var/lib/mpd
 wget https://raw.githubusercontent.com/archphile/WebRadios/master/archphile-script/wrf.sh
 chmod +x wrf.sh
 ./wrf.sh
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/mpdprio
+chmod +x /usr/local/bin/mpdprio
 }
 
 function c_asound {

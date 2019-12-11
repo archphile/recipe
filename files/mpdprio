@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# code taken from:
+# https://github.com/RuneAudio/RuneUI/blob/master/command/rune_prio
+#
+count=1
+for pid in $(pgrep -w mpd);
+do
+    if ((count == 1))
+    then
+        echo "### Set priority for: mpd thread ###";
+        renice -16 $pid;
+    fi
+    if ((count == 2))
+    then
+        echo "### Set priority for: mpd-io thread ###";
+        renice -16 $pid;
+    fi
+    if ((count == 3))
+    then
+        echo "### Set priority for: mpd-rtio thread ###";
+        renice -18 $pid;
+    fi
+    if ((count == 4))
+    then
+        echo "### Set priority for: player thread ###";
+        renice -16 $pid;
+    fi
+    if ((count == 5))
+    then
+        echo "### Set priority for: decoder thread ###";
+        renice -16 $pid;
+    fi
+    if ((count == 6))
+    then
+        echo "### Set priority for: mpd-output thread ###";
+        renice -18 $pid;
+    fi
+count=$((count+1))
+done

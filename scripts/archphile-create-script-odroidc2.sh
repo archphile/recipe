@@ -328,7 +328,7 @@ c_jlog
 c_covers
 c_spindown
 c_samba
-c_shairport
+#c_shairport
 c_irq
 c_tweaks
 c_cleanup

@@ -1,6 +1,6 @@
 #!/bin/bash
-###################### Archphile Creation Script for Odroid C2 #############################
-##  Before running this script, you need to enable ssh root login with the following command"
+####################### Archphile Creation Script for Odroid C2 #############################
+##  Before running this script, you need to enable ssh root login with the following command:
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ##  and then log in as root.
 ##  Please also make sure that wget is installed (pacman -Sy wget)

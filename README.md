@@ -9,11 +9,3 @@ In addition to the above, Archphile packages need rebuilding when the various li
 
 I used to update/rebuild the packages before each release. I don't anymore. This means that if you use the scripts with my repos on it, your installation will fail 100%.
 
-
-
-
-
-
-
-
-

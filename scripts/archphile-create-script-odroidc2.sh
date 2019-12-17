@@ -309,6 +309,7 @@ rm /root/archphile-create-script*
 echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}" 
 }
 
+c_pacinit
 c_color
 c_root
 c_net

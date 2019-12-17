@@ -29,6 +29,13 @@ if [[ $? -ne 0 ]]; then
 fi
 }
 
+function c_pacinit {
+# Initializing the pacman keyring and populating the Arch Linux ARM package signing keys
+echo -e "${red}Initializing the pacman keyring and populating the package signing key...${NC}" 
+pacman-key --init
+pacman-key --populate archlinuxarm
+}
+
 function c_password {
 # Deleting alarm user and changing Root password
 echo -e "${red}Deleting alarm user...${NC}" 
@@ -127,8 +134,9 @@ echo -e "${red}Adding Archphile Repository...${NC}"
 cat >> /etc/pacman.conf <<"EOF"
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/archphile/aarch64/0998
+Server = http://archphile.org/repo/archphile/aarch64/latest
 EOF
+}
 
 # Fetching Custom Pacman Mirrorlist
 echo -e "${red}Fetching custom mirrorlist...${NC}" 
@@ -304,6 +312,7 @@ echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}"
 c_color
 c_root
 c_net
+c_pacinit
 c_password
 c_hostname
 c_motd

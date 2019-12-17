@@ -175,7 +175,9 @@ echo -e "${red}Installing Mainline Kernel...${NC}"
 pacman -R uboot-odroid-c2 --noconfirm
 pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
 # Install custom kernel and prevent it from further upgrading
-pacman -U https://archphile.org/repo/archphile/aarch64/latest/linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz --noconfirm
+wget https://archphile.org/repo/archphile/aarch64/latest/linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz
+pacman -U linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz --noconfirm
+rm linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz
 sed '/#IgnorePkg   =/c IgnorePkg   = linux-aarch64' -i /etc/pacman.conf
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
@@ -186,7 +188,7 @@ cd /root
 function c_purgepack {
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
-pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
+#pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 pacman -Scc
 }
 

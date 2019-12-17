@@ -136,11 +136,11 @@ function c_repo {
 # Adding Archphile repository
 echo -e "${red}Adding Archphile Repository...${NC}" 
 cat >> /etc/pacman.conf <<"EOF"
+
 [archphile]
 SigLevel = Never
 Server = http://archphile.org/repo/archphile/aarch64/latest
 EOF
-}
 
 # Fetching Custom Pacman Mirrorlist
 echo -e "${red}Fetching custom mirrorlist...${NC}" 
@@ -304,7 +304,6 @@ rm /root/archphile-create-script*
 echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}" 
 }
 
-c_pacinit
 c_color
 c_root
 c_net
@@ -330,7 +329,6 @@ c_mpdconf
 c_asound
 c_udevil
 c_jlog
-c_covers
 c_spindown
 c_samba
 #c_shairport

@@ -133,11 +133,11 @@ function c_repo {
 # Adding Archphile repository
 echo -e "${red}Adding Archphile Repository...${NC}" 
 cat >> /etc/pacman.conf <<"EOF"
+
 [archphile]
 SigLevel = Never
 Server = http://archphile.org/repo/archphile/arm7/latest
 EOF
-}
 
 # Fetching Custom Pacman Mirrorlist
 echo -e "${red}Fetching custom mirrorlist...${NC}" 
@@ -333,7 +333,6 @@ c_mpdconf
 c_asound
 c_udevil
 c_jlog
-c_covers
 c_spindown
 c_samba
 #c_shairport

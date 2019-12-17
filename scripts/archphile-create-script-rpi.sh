@@ -89,6 +89,7 @@ echo -e "${red}Changing netctl network configuration...${NC}"
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/archphile-network -O /etc/netctl/archphile-network
 systemctl disable systemd-networkd
 systemctl mask systemd-networkd
+pacman -Sy netctl --noconfirm
 netctl enable archphile-network
 }
 

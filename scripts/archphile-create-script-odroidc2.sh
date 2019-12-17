@@ -324,7 +324,7 @@ c_repo
 c_syspack
 c_archpack
 c_kernelpack
-#c_purgepack
+c_purgepack
 c_target
 c_services
 c_mpdconf

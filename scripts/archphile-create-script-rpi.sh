@@ -178,7 +178,7 @@ chmod +x /usr/local/bin/perfcheck
 function c_purgepack {
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
-pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
+#pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db which s-nail licenses jfsutils gettext logrotate --noconfirm
 pacman -Scc
 }
 

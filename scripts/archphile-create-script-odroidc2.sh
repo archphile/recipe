@@ -162,7 +162,7 @@ function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
 #pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap quickserve librespot-archphile --noconfirm
-pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-odroid upmpdcli-archphile alsacap quickserve --noconfirm
+pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-odroid upmpdcli-archphile alsacap --noconfirm
 
 # Downloading perfcheck command tool
 echo -e "${red}Downloading perfcheck tool...${NC}" 

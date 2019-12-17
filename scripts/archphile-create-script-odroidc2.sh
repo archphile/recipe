@@ -163,29 +163,20 @@ echo -e "${red}Installing audio related packages...${NC}"
 #pacman -S alsa-utils mpd-archphile mpc mpdscribble ympd-archphile mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap quickserve librespot-archphile --noconfirm
 pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-odroid upmpdcli-archphile alsacap quickserve --noconfirm
 
-# Making python2 default for upmpdcli
-#echo -e "${red}Making python2 the default one...${NC}" 
-#ln -s /usr/bin/python2 /usr/bin/python
-
 # Downloading perfcheck command tool
 echo -e "${red}Downloading perfcheck tool...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/perfcheck -O /usr/local/bin/perfcheck
 chmod +x /usr/local/bin/perfcheck
-
-#linking mpd library for myMPD local coverart
-#echo -e "${red}Symlinking MPD library for myMPD local cover art...${NC}" 
-#ln -s /var/lib/mpd/music/ /usr/share/mympd/htdocs/library
 }
 
 function c_kernelpack {
 # Installing mainline kernel	
 echo -e "${red}Installing Mainline Kernel...${NC}"
-#wget https://raw.githubusercontent.com/archphile/recipe/master/files/modify_odroid_c2_dtb.sh -O /usr/local/bin/modify_odroid_c2_dtb.sh
-#chmod +x /usr/local/bin/modify_odroid_c2_dtb.sh
 pacman -R uboot-odroid-c2 --noconfirm
 pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
-#pacman -Sy dtc
-#bash /usr/local/bin/modify_odroid_c2_dtb.sh
+# Install custom kernel and prevent it from further upgrading
+pacman -U https://archphile.org/repo/archphile/aarch64/latest/linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz --noconfirm
+sed '/#IgnorePkg   =/c IgnorePkg   = linux-aarch64' -i /etc/pacman.conf
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
 ./mkscr
@@ -332,7 +323,7 @@ c_repo
 c_syspack
 c_archpack
 c_kernelpack
-c_purgepack
+#c_purgepack
 c_target
 c_services
 c_mpdconf

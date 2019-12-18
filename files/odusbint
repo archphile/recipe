@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# this script is a modification of the script found here:
+# https://www.diyaudio.com/forums/pc-based/346635-rpi4-khadas-toneboard-interrupt-flooding.html
+# it calculates the usb interrupts/sec sent to the 4th core of odroid C2 
+#
+count=$(cat /proc/interrupts | grep usb1 | awk '{print $5}')
+for i in {1..10}
+do
+sleep 1
+countnew=$(cat /proc/interrupts | grep usb1 | awk '{print $5}')
+echo “sec $i: $(($countnew - $count))”
+count=$countnew
+done

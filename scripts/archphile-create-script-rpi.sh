@@ -159,7 +159,7 @@ function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
 #pacman -S alsa-utils mpd-archphile mpdscribble mpc ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap quickserve librespot-archphile uhubctl --noconfirm
-pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile alsacap --noconfirm
+pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile librespot-archphile alsacap --noconfirm
 
 # Making python2 default for upmpdcli
 #echo -e "${red}Making python2 the default one...${NC}" 

@@ -6,7 +6,10 @@ systemctl disable squeezelite
 systemctl stop squeezelite
 
 systemctl enable mpd mympd
-systemctl start mpd mymp
+systemctl start mpd mympd
 
+# need to re-work on this section
 sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
 sed -i '/pidof squeezelite/s/^/#/g' /usr/bin/archphile-optimize
+
+archphile-optimize

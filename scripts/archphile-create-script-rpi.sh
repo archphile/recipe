@@ -159,20 +159,16 @@ function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
 #pacman -S alsa-utils mpd-archphile mpdscribble mpc ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap quickserve librespot-archphile uhubctl --noconfirm
-pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile librespot-archphile alsacap --noconfirm
+pacman -S alsa-utils mpd-archphile-minimal mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile librespot-archphile squeezelite-archphile alsacap --noconfirm
 
-# Making python2 default for upmpdcli
-#echo -e "${red}Making python2 the default one...${NC}" 
-#ln -s /usr/bin/python2 /usr/bin/python
-
-# Downloading perfcheck command tool
-echo -e "${red}Downloading perfcheck tool...${NC}" 
+# Downloading various scripts/commands to /usr/local/bin/
+echo -e "${red}Downloading various scripts/commands...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/perfcheck -O /usr/local/bin/perfcheck
 chmod +x /usr/local/bin/perfcheck
-
-#linking mpd library for myMPD local coverart
-#echo -e "${red}Symlinking MPD library for myMPD local cover art...${NC}" 
-#ln -s /var/lib/mpd/music/ /usr/share/mympd/htdocs/library
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/mpdfy -O /usr/local/bin/mpdfy
+chmod +x /usr/local/bin/mpdfy
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/squeezefy -O /usr/local/bin/squeezefy
+chmod +x /usr/local/bin/squeezefy
 }
 
 function c_purgepack {

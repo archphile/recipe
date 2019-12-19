@@ -1,0 +1,12 @@
+#!/bin/bash
+# this script disables squeezelite and enables mpd and mympd
+#
+
+systemctl disable squeezelite
+systemctl stop squeezelite
+
+systemctl enable mpd mympd
+systemctl start mpd mymp
+
+sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
+sed -i '/pidof squeezelite/s/^/#/g' /usr/bin/archphile-optimize

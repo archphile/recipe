@@ -8,8 +8,7 @@ systemctl stop squeezelite
 systemctl enable mpd mympd
 systemctl start mpd mympd
 
-# need to re-work on this section
-sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
-sed -i '/pidof squeezelite/s/^/#/g' /usr/bin/archphile-optimize
+sed '/taskset -c -a -p 1 $(pidof squeezelite)/c\#taskset -c -a -p 1 $(pidof squeezelite)' -i /usr/bin/archphile-optimize
+sed '/#taskset -c -a -p 1 $(pidof mpd)/c\taskset -c -a -p 1 $(pidof mpd)' -i /usr/bin/archphile-optimize
 
 archphile-optimize

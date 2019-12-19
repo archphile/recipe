@@ -6,6 +6,7 @@ systemctl enable squeezelite
 systemctl start squeezelite
 
 systemctl disable mpd mympd
+sytstemctl stop mpd.socket
 systemctl stop mpd mympd
 
 sed '/#taskset -c -a -p 1 $(pidof squeezelite)/c\taskset -c -a -p 1 $(pidof squeezelite)' -i /usr/bin/archphile-optimize

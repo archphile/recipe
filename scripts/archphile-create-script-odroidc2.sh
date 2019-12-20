@@ -84,6 +84,7 @@ blacklist dw_hdmi_i2s_audio
 blacklist meson_ir
 blacklist meson_dw_hdmi
 blacklist dw_hdmi
+blacklist usbhid
 EOF
 }
 
@@ -178,12 +179,7 @@ function c_kernelpack {
 # Installing mainline kernel	
 echo -e "${red}Installing Mainline Kernel...${NC}"
 pacman -R uboot-odroid-c2 --noconfirm
-pacman -Sy linux-aarch64 uboot-odroid-c2-mainline uboot-tools
-# Install custom kernel and prevent it from further upgrading
-wget https://archphile.org/repo/archphile/aarch64/latest/linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz
-pacman -U linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz --noconfirm
-rm linux-aarch64-5.4.3-1-aarch64.pkg.tar.xz
-sed '/#IgnorePkg   =/c IgnorePkg   = linux-aarch64' -i /etc/pacman.conf
+pacman -Sy linux-aarch64-archphile uboot-odroid-c2-mainline uboot-tools
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
 cd /boot
 ./mkscr

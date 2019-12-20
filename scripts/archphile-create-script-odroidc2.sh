@@ -85,6 +85,7 @@ blacklist meson_ir
 blacklist meson_dw_hdmi
 blacklist dw_hdmi
 blacklist usbhid
+blacklist lima
 EOF
 }
 

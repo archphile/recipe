@@ -157,7 +157,7 @@ pacman -Syu --noconfirm
 
 # Installing system packages
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo --noconfirm
 }
 
 function c_archpack {
@@ -227,6 +227,15 @@ chmod +x wrf.sh
 ./wrf.sh
 }
 
+function c_mympdconf {
+# Adding custom systemc commands for myMPD
+echo -e "${red}Adding system commands in /etc/sudoers...${NC}"
+echo "" >> /etc/sudoers 
+echo "## Configuration for myMPD" >> /etc/sudoers 
+echo "Cmnd_Alias MYMPD_CMDS = /sbin/halt, /sbin/reboot" >> /etc/sudoers 
+echo "mympd ALL=NOPASSWD: MYMPD_CMDS" >> /etc/sudoers 
+}
+	
 function c_asound {
 # setting the USB or I2S DAC as default sound card
 echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
@@ -300,6 +309,12 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 #sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
 }
 
+function c_temp {
+# Applyting temp fix for upmpdcli
+echo -e "${red}Applying temp fix for upmpdcli ...${NC}"
+upmpdcli
+}
+
 function c_cleanup {
 # Cleaning up..
 echo -e "${red}Cleaning up system...${NC}" 
@@ -330,6 +345,7 @@ c_purgepack
 c_target
 c_services
 c_mpdconf
+c_mympdconf
 c_asound
 c_udevil
 c_jlog
@@ -338,4 +354,5 @@ c_samba
 #c_shairport
 c_irq
 c_tweaks
+c_temp
 c_cleanup

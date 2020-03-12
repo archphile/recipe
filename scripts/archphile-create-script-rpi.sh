@@ -152,7 +152,7 @@ pacman -Syu --noconfirm
 
 # Installing system packages
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc --noconfirm
+pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo --noconfirm
 }
 
 function c_archpack {
@@ -209,6 +209,15 @@ chown -R mpd:audio /var/lib/mpd
 wget https://raw.githubusercontent.com/archphile/WebRadios/master/archphile-script/wrf.sh
 chmod +x wrf.sh
 ./wrf.sh
+}
+
+function c_mympdconf {
+# Adding custom systemc commands for myMPD
+echo -e "${red}Adding system commands in /etc/sudoers...${NC}"
+echo "" >> /etc/sudoers 
+echo "## Configuration for myMPD" >> /etc/sudoers 
+echo "Cmnd_Alias MYMPD_CMDS = /sbin/halt, /sbin/reboot" >> /etc/sudoers 
+echo "mympd ALL=NOPASSWD: MYMPD_CMDS" >> /etc/sudoers 
 }
 
 function c_asound {
@@ -298,6 +307,12 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/hub-ctrl -O
 chmod +x /usr/local/bin/hub-ctrl
 }
 
+function c_temp {
+# Applyting temp fix for upmpdcli
+echo -e "${red}Applying temp fix for upmpdcli ...${NC}"
+upmpdcli
+}
+
 function c_cleanup {
 # Cleaning up..
 echo -e "${red}Cleaning up system...${NC}" 
@@ -327,6 +342,7 @@ c_purgepack
 c_target
 c_services
 c_mpdconf
+c_mympdconf
 c_asound
 c_udevil
 c_jlog
@@ -336,5 +352,6 @@ c_samba
 c_cmdline
 c_config
 c_tweaks
+c_temp
 c_cleanup
 

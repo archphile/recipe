@@ -1,7 +1,9 @@
-#Server = http://tardis.tiny-vps.com/aarm/repos/2019/12/17/$arch/$repo
+# Rollback Machine
+#Server = http://tardis.tiny-vps.com/aarm/repos/2020/04/07/$arch/$repo
+
 #
 # Arch Linux ARM repository mirrorlist
-# Generated on 2020-01-08
+# Generated on 2020-02-11
 #
 
 ## Geo-IP based mirror selection and load balancing
@@ -29,9 +31,8 @@ Server = http://mirror.archlinuxarm.org/$arch/$repo
 ## Coburg
 # Server = http://de4.mirror.archlinuxarm.org/$arch/$repo
 ## Falkenstein
-# Server = http://de5.mirror.archlinuxarm.org/$arch/$repo
-## Nuremberg
 # Server = http://eu.mirror.archlinuxarm.org/$arch/$repo
+# Server = http://de5.mirror.archlinuxarm.org/$arch/$repo
 
 ### Greece
 ## Athens

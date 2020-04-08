@@ -141,7 +141,7 @@ cat >> /etc/pacman.conf <<"EOF"
 
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/archphile/arm7/latest
+Server = http://archphile.org/repo/archphile/arm7/corona
 EOF
 
 # Fetching Custom Pacman Mirrorlist

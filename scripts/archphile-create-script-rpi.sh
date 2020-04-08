@@ -2,11 +2,8 @@
 ###################### Archphile Creation Script for Raspberry Pi 2 and 3 ############################
 ##  Before running this script, you need to enable ssh root login with the following command:
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-##  and then log in as root.
-##  The next step is to give these two commands:
-##  pacman-key --init
-##  pacman-key --populate archlinuxarm
-##  Finally install wget with:
+##  reboot and log in as root.
+##  Then install wget with:
 ##  pacman -Sy wget
 
 function c_color {

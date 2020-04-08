@@ -162,7 +162,7 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpdscribble mpc ympd-archphile mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap librespot-archphile uhubctl --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap librespot-archphile uhubctl squeezelite-archphile --noconfirm
 
 # Downloading various scripts/commands to /usr/local/bin/
 echo -e "${red}Downloading various scripts/commands...${NC}" 

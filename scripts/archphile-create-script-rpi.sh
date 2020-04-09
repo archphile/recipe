@@ -359,6 +359,6 @@ c_shairport
 c_cmdline
 c_config
 c_tweaks
-c_temp
+#c_temp
 c_cleanup
 

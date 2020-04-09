@@ -361,5 +361,5 @@ c_samba
 c_shairport
 c_irq
 c_tweaks
-c_temp
+#c_temp
 c_cleanup

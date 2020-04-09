@@ -175,6 +175,7 @@ function c_varpack {
 # Installing misc packages
 echo -e "${red}Installing additional packages needed by mpd-archphile-sacd...${NC}" 
 pacman -Sy libcdio libcdio-paranoia libmms zziplib --noconfirm
+}
 
 function c_purgepack {
 # Removing unneeded packages and cleaning pacman cache

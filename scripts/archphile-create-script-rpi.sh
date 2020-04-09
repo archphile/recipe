@@ -310,7 +310,7 @@ chmod +x /usr/local/bin/hub-ctrl
 function c_temp {
 # Applyting temp fix for upmpdcli
 echo -e "${red}Applying temp fix for upmpdcli ...${NC}"
-upmpdcli
+upmpdcli -c /etc/upmpdcli.conf
 }
 
 function c_cleanup {
@@ -352,6 +352,6 @@ c_shairport
 c_cmdline
 c_config
 c_tweaks
-#c_temp
+c_temp
 c_cleanup
 

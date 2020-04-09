@@ -313,7 +313,7 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 function c_temp {
 # Applyting temp fix for upmpdcli
 echo -e "${red}Applying temp fix for upmpdcli ...${NC}"
-upmpdcli
+upmpdcli -c /etc/upmpdcli.conf
 }
 
 function c_cleanup {
@@ -355,5 +355,5 @@ c_samba
 c_shairport
 c_irq
 c_tweaks
-#c_temp
+c_temp
 c_cleanup

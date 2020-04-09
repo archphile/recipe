@@ -171,6 +171,11 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/squeezefy -
 chmod +x /usr/local/bin/squeezefy
 }
 
+function c_varpack {
+# Installing misc packages
+echo -e "${red}Installing additional packages needed by mpd-archphile-sacd...${NC}" 
+pacman -Sy libcdio libcdio-paranoia libmms zziplib --noconfirm
+
 function c_purgepack {
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -338,6 +343,7 @@ c_history
 c_repo
 c_syspack
 c_archpack
+c_varpack
 c_purgepack
 c_target
 c_services

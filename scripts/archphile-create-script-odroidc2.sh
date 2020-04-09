@@ -166,7 +166,6 @@ function c_archpack {
 echo -e "${red}Installing audio related packages...${NC}" 
 pacman -S alsa-utils mpd-archphile mpc mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap librespot-archphile squeezelite-archphile --noconfirm
 
-
 # Downloading various scripts/commands to /usr/local/bin/
 echo -e "${red}Downloading various scripts/commands...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/perfcheck -O /usr/local/bin/perfcheck
@@ -176,6 +175,11 @@ chmod +x /usr/local/bin/mpdfy
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/squeezefy -O /usr/local/bin/squeezefy
 chmod +x /usr/local/bin/squeezefy
 }
+
+function c_varpack {
+# Installing misc packages
+echo -e "${red}Installing additional packages needed by mpd-archphile-sacd...${NC}" 
+pacman -Sy libcdio libcdio-paranoia libmms zziplib --noconfirm
 
 function c_kernelpack {
 # Installing mainline kernel	
@@ -341,6 +345,7 @@ c_history
 c_repo
 c_syspack
 c_archpack
+c_varpack 
 c_kernelpack
 c_purgepack
 c_target

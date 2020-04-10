@@ -1,5 +1,5 @@
 #!/bin/bash
-###################### Archphile Creation Script for Raspberry Pi 2 and 3 ############################
+####################### Archphile Creation Script for Odroid C2 #############################
 ##  Before running this script, you need to enable ssh root login with the following command:
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ##  reboot and log in as root.
@@ -54,7 +54,7 @@ hostnamectl set-hostname archphile
 function c_motd {
 # /etc/motd text
 echo -e "${red}Downloading sample /etc/motd file...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/motd-rpi -O /etc/motd
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/motd-odroidc2 -O /etc/motd
 nano /etc/motd
 }
 
@@ -80,7 +80,13 @@ function c_modules {
 # Disabling various modules
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
-blacklist snd_bcm2835
+blacklist dw_hdmi_cec
+blacklist dw_hdmi_i2s_audio
+blacklist meson_ir
+blacklist meson_dw_hdmi
+blacklist dw_hdmi
+blacklist usbhid
+blacklist lima
 EOF
 }
 
@@ -121,11 +127,10 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/ntp.conf -O
 function c_fstab {
 # /etc/fstab tweaking
 echo -e "${red}Changing fstab entries...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/fstab-rpi -O /etc/fstab
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/fstab-odroid -O /etc/fstab
 }
 
 function c_history {
-# Linking .bash_history to /dev/null
 echo -e "${red}Linking .bash_history to /dev/null...${NC}" 
 rm /root/.bash_history
 ln -sf /dev/null ~/.bash_history
@@ -138,7 +143,7 @@ cat >> /etc/pacman.conf <<"EOF"
 
 [archphile]
 SigLevel = Never
-Server = http://archphile.org/repo/archphile/arm7/corona
+Server = http://archphile.org/repo/archphile/aarch64/corona
 EOF
 
 # Fetching Custom Pacman Mirrorlist
@@ -159,7 +164,7 @@ pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplic
 function c_archpack {
 # Installing audio related packages
 echo -e "${red}Installing audio related packages...${NC}" 
-pacman -S alsa-utils mpd-archphile mpc mympd-archphile archphile-optimize-rpi upmpdcli-archphile shairport-sync brutefir alsacap librespot-archphile squeezelite-archphile --noconfirm
+pacman -S alsa-utils mpd-archphile mpc mympd-archphile archphile-optimize-odroid upmpdcli-archphile shairport-sync brutefir alsacap librespot-archphile squeezelite-archphile --noconfirm
 
 # Downloading various scripts/commands to /usr/local/bin/
 echo -e "${red}Downloading various scripts/commands...${NC}" 
@@ -175,6 +180,17 @@ function c_varpack {
 # Installing misc packages
 echo -e "${red}Installing additional packages needed by mpd-archphile-sacd...${NC}" 
 pacman -Sy libcdio libcdio-paranoia libmms zziplib --noconfirm
+}
+
+function c_kernelpack {
+# Installing mainline kernel	
+echo -e "${red}Installing Mainline Kernel...${NC}"
+pacman -R uboot-odroid-c2 --noconfirm
+pacman -Sy linux-aarch64-archphile uboot-odroid-c2-mainline uboot-tools
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/boot.txt -O /boot/boot.txt
+cd /boot
+./mkscr
+cd /root
 }
 
 function c_purgepack {
@@ -225,7 +241,7 @@ echo "## Configuration for myMPD" >> /etc/sudoers
 echo "Cmnd_Alias MYMPD_CMDS = /sbin/halt, /sbin/reboot" >> /etc/sudoers 
 echo "mympd ALL=NOPASSWD: MYMPD_CMDS" >> /etc/sudoers 
 }
-
+	
 function c_asound {
 # setting the USB or I2S DAC as default sound card
 echo -e "${red}Setting the USB DAC as the default sound card...${NC}" 
@@ -278,16 +294,11 @@ echo -e "${red}Setting shairport-sync configuration..${NC}"
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 }
 
-function c_cmdline {
-# Changing cmdline options
-echo -e "${red}Updating cmdline.txt...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline.txt -O /boot/cmdline.txt
-}
-
-function c_config {
-# Changing config.txt options
-echo -e "${red}Updating config.txt...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt -O /boot/config.txt
+function c_irq {
+# IRQ affinity options
+echo -e "${red}Adding optional IRQ affinity options...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-odroidc2 -O /usr/local/bin/irq-archphile
+chmod +x /usr/local/bin/irq-archphile
 }
 
 function c_tweaks {
@@ -295,13 +306,13 @@ function c_tweaks {
 echo -e "${red}Applying various tweaks/mods ...${NC}" 
 echo "Archphile \r (\l)" > /etc/issue
 sed -i 's/#Color/Color/' /etc/pacman.conf
-#sed -i '/tvservice/s/^#//g' /usr/bin/archphile-optimize 
+#echo -e "${red}Enabling IRQ affinity...${NC}" 
+#sed -i '/irq-archphile/s/^#//g' /usr/bin/archphile-optimize
+#echo -e "${red}Setting various processes to be run on specific cores...${NC}" 
 #sed -i '/pidof mpd/s/^#//g' /usr/bin/archphile-optimize
-#sed -i '/2 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
-# Applying various tweaks by default
-echo -e "${red}Adding hub-ctrl ...${NC}"
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/hub-ctrl -O /usr/local/bin/hub-ctrl
-chmod +x /usr/local/bin/hub-ctrl
+#sed -i '/0 $(pidof ympd)/s/^#//g' /usr/bin/archphile-optimize
+#echo -e "${red}Disabling heartbeat blue led...${NC}" 
+#sed -i '/alive/s/^#//g' /usr/bin/archphile-optimize 
 }
 
 function c_temp {
@@ -335,7 +346,8 @@ c_history
 c_repo
 c_syspack
 c_archpack
-c_varpack
+c_varpack 
+c_kernelpack
 c_purgepack
 c_target
 c_services
@@ -347,9 +359,7 @@ c_jlog
 c_spindown
 c_samba
 c_shairport
-c_cmdline
-c_config
+c_irq
 c_tweaks
 #c_temp
 c_cleanup
-

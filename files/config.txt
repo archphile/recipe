@@ -128,7 +128,7 @@ disable_pvt=1
 #dtoverlay=hifiberry-dac
 
 # Maxim MAX98357A
-dtoverlay=max98357a
+#dtoverlay=max98357a
 
 # Blokas Labs pisound card
 #dtoverlay=pisound

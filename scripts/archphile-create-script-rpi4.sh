@@ -1,5 +1,5 @@
 #!/bin/bash
-###################### Archphile Creation Script for Raspberry Pi 2 and 3 ############################
+###################### Archphile Creation Script for Raspberry Pi 4 ############################
 ##  Before running this script, you need to enable ssh root login with the following command:
 ##  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ##  reboot and log in as root.

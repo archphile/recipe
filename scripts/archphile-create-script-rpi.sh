@@ -145,6 +145,7 @@ EOF
 echo -e "${red}Fetching custom mirrorlist...${NC}" 
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/mirrorlist -O /etc/pacman.d/mirrorlist
 nano /etc/pacman.d/mirrorlist
+pacman -Syy
 }
 
 function c_syspack {

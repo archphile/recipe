@@ -154,7 +154,7 @@ pacman -Syu --noconfirm
 
 # Installing system packages
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo rpi-eeprom--noconfirm
+pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo rpi-eeprom binutils --noconfirm
 }
 
 function c_archpack {

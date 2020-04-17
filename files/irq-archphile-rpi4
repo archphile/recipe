@@ -2,9 +2,9 @@
 # Cores 1 2 3 4 have to be put as 1 2 4 8
 
 # USB bus - All usb interrupts are sent to the fourth core
-echo "8" > /proc/irq/37/smp_affinity
+echo "8" > /proc/irq/38/smp_affinity
 
 # Ethernet - All ethernet interrupts are sent to the third core
-echo "4" > /proc/irq/28/smp_affinity
 echo "4" > /proc/irq/29/smp_affinity
+echo "4" > /proc/irq/30/smp_affinity
 

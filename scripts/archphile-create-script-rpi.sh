@@ -289,7 +289,7 @@ wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline-rpi
 function c_config {
 # Changing config.txt options
 echo -e "${red}Updating config.txt...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/config.txt -O /boot/config.txt
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/config-rpi3.txt -O /boot/config.txt
 }
 
 function c_tweaks {

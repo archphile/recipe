@@ -1,0 +1,152 @@
+# Archphile Custom Configuration
+
+# General Settings
+gpu_mem=16
+initramfs initramfs-linux.img followkernel
+kernel=kernel8.img
+arm_64bit=1
+device_tree=broadcom/bcm2711-rpi-4-b.dtb
+enable_gic=1
+disable_splash=1
+disable_overscan=1
+dtparam=i2c_arm=on
+dtparam=i2s=on
+dtparam=audio=off
+dtparam=spi=off
+dtoverlay=pi3-disable-wifi
+dtoverlay=pi3-disable-bt
+disable_pvt=1
+#dtparam=eee=off
+
+# Disable ACT LED
+#dtparam=act_led_trigger=none
+#dtparam=act_led_activelow=on
+
+# Disable PWR LED
+#dtparam=pwr_led_trigger=none
+#dtparam=pwr_led_activelow=on
+
+# Microsd overclock - enable it only if you know what you are doing!
+#dtoverlay=sdhost,overclock_50=100
+
+# I2S Dacs Configuration
+# Please remove symbol "#" for the i2s dac you want to use
+# and Reboot. Do not remove "#" from the description but
+# only from the line that starts with "dtoverlay"
+# Please visit:
+# https://github.com/archphile/recipe/blob/master/files/I2S_Dacs_Readme.txt 
+# in order to read about the additional parameters for the following dacs
+
+
+# Akkordion Music Player
+#dtoverlay=akkordion-iqdacplus 
+
+# Allo Boss DAC
+#dtoverlay=allo-boss-dac-pcm512x-audio
+
+# Allo Digione
+#dtoverlay=allo-digione
+
+# Allo Katana DAC
+#dtoverlay=allo-katana-dac-audio
+
+# Allo Piano DAC 2.0/2.1
+#dtoverlay=allo-piano-dac-pcm512x-audio
+
+# Allo Piano DAC Plus 2.1
+#dtoverlay=allo-piano-dac-plus-pcm512x-audio
+
+# Allo Piano DAC Plus 2.1 with Kali
+#dtoverlay=allo-piano-dac-plus-pcm512x-audio,glb_mclk
+
+# ApplePi-DAC (Orchard Audio)
+#dtoverlay=applepi-dac
+
+# Audioinjector.net ultra
+#dtoverlay=audioinjector-ultra
+
+# Audioinjector.net audio add on
+#dtoverlay=audioinjector-wm8731-audio
+
+# Audiosense-pi
+#dtoverlay=audiosense-pi
+
+# Dion Audio LOCO DAC-AMP
+#dtoverlay=dionaudio-loco
+
+# Dion Audio LOCO DAC-AMP
+#dtoverlay=dionaudio-loco-v2
+
+# Fe-Pi Audio Sound Card
+#dtoverlay=fe-pi-audio
+
+# Hifiberry DAC
+#dtoverlay=hifiberry-dac
+
+# Hifiberry DAC Plus
+#dtoverlay=hifiberry-dacplus
+
+# HifiBerry DAC+ADC
+#dtoverlay=hifiberry-dacplusadc
+
+# HifiBerry DAC+ADC PRO
+#dtoverlay=hifiberry-dacplusadcpro
+
+# HifiBerry DAC+DSP
+#dtoverlay=hifiberry-dacplusdsp
+
+# HifiBerry DAC+ HD
+#dtoverlay=hifiberry-dacplushd
+
+# HifiBerry Digi and Digi+
+#dtoverlay=hifiberry-digi
+
+# Hifiberry Digi+ Pro
+#dtoverlay=hifiberry-digi-pro
+
+# Audiophonics I-SABRE Q2M DAC
+#dtoverlay=i-sabre-q2m
+
+# IQaudio Codec
+#dtoverlay=iqaudio-codec
+
+# IQaudio DAC
+#dtoverlay=iqaudio-dac
+
+# IQaudio DAC+
+#dtoverlay=iqaudio-dacplus
+
+# IQAudIO Digi
+#dtoverlay=iqaudio-digi-wm8804-audio
+
+# Justboom-dac and justboom-digi simultaneous usage
+#dtoverlay=justboom-both
+
+# JustBoom DAC Hat/Amp HAT/DAC Zero/Amp Zero
+#dtoverlay=justboom-dac
+
+# JustBoom Digi & Digi Zero
+#dtoverlay=justboom-digi
+
+# Mamboberry DACs
+#dtoverlay=hifiberry-dac
+
+# Maxim MAX98357A
+#dtoverlay=max98357a
+
+# Blokas Labs pisound card
+#dtoverlay=pisound
+
+# Cirrus Logis Audio Card
+#dtoverlay=rpi-cirrus-wm5102
+
+# RPi DAC
+#dtoverlay=rpi-dac
+
+# RPi Proto
+#dtoverlay=rpi-proto
+
+# Red Rocks Audio DigiDAC1
+#dtoverlay=rra-digidac1-wm8741-audio
+
+

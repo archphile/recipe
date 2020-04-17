@@ -154,7 +154,7 @@ pacman -Syu --noconfirm
 
 # Installing system packages
 echo -e "${red}Installing system related packages...${NC}" 
-pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo --noconfirm
+pacman -S unzip samba cifs-utils nfs-utils udevil ntfs-3g htop avahi wpa_supplicant wireless_tools iw dhcpcd ethtool hd-idle lirc sudo rpi-eeprom--noconfirm
 }
 
 function c_archpack {
@@ -279,10 +279,17 @@ echo -e "${red}Setting shairport-sync configuration..${NC}"
 wget https://raw.githubusercontent.com/archphile/recipe/master/files/shairport-sync.conf -O /etc/shairport-sync.conf
 }
 
+function c_irq {
+# IRQ affinity options
+echo -e "${red}Adding optional IRQ affinity options...${NC}" 
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/irq-archphile-rpi4 -O /usr/local/bin/irq-archphile
+chmod +x /usr/local/bin/irq-archphile
+}
+
 function c_cmdline {
 # Changing cmdline options
 echo -e "${red}Updating cmdline.txt...${NC}" 
-wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline-rpi3.txt -O /boot/cmdline.txt
+wget https://raw.githubusercontent.com/archphile/recipe/master/files/cmdline-rpi4.txt -O /boot/cmdline.txt
 }
 
 function c_config {
@@ -348,6 +355,7 @@ c_jlog
 c_spindown
 c_samba
 c_shairport
+c_irq
 c_cmdline
 c_config
 c_tweaks
